@@ -5,3 +5,8 @@ recursos-adicionales
 preliminares
 manipulación-de-datos
 visualización-de-datos
+análisis-preliminar
+data-import
+data-tidying
+modificar-data
+combinar-data

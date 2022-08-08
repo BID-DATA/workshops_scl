@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Sección 2 Análisis preliminar | Workshop: Tidyverse</title>
+  <meta name="description" content="Sección 2 Análisis preliminar | Workshop: Tidyverse" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Sección 2 Análisis preliminar | Workshop: Tidyverse" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Sección 2 Análisis preliminar | Workshop: Tidyverse" />
+  
+  
+  
+
+<meta name="author" content="María Reyes Retana" />
+
+
+<meta name="date" content="2022-08-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="manipulación-de-datos.html"/>
+<script src="libs/header-attrs-2.11.3/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/toc.css" type="text/css" />
+<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="css/cajas.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Workshop Tidyverse</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#workshop-introducción-a-tidyverse" id="toc-workshop-introducción-a-tidyverse"><span class="toc-section-number">1</span> Workshop: Introducción a tidyverse</a>
+<ul>
+<li><a href="index.html#primeros-pasos" id="toc-primeros-pasos"><span class="toc-section-number">1.1</span> Primeros pasos</a></li>
+<li><a href="index.html#porqué-tidyverse" id="toc-porqué-tidyverse"><span class="toc-section-number">1.2</span> ¿Porqué Tidyverse?</a></li>
+<li><a href="index.html#recursos-adicionales" id="toc-recursos-adicionales"><span class="toc-section-number">1.3</span> Recursos adicionales</a></li>
+</ul></li>
+<li><a href="análisis-preliminar.html#análisis-preliminar" id="toc-análisis-preliminar"><span class="toc-section-number">2</span> Análisis preliminar</a>
+<ul>
+<li><a href="análisis-preliminar.html#data-import" id="toc-data-import"><span class="toc-section-number">2.1</span> Data import</a></li>
+<li><a href="análisis-preliminar.html#data-tidying" id="toc-data-tidying"><span class="toc-section-number">2.2</span> Data tidying</a></li>
+</ul></li>
+<li><a href="manipulación-de-datos.html#manipulación-de-datos" id="toc-manipulación-de-datos"><span class="toc-section-number">3</span> Manipulación de datos</a>
+<ul>
+<li><a href="manipulación-de-datos.html#modificar-data" id="toc-modificar-data"><span class="toc-section-number">3.1</span> Modificar data</a></li>
+<li><a href="manipulación-de-datos.html#combinar-data" id="toc-combinar-data"><span class="toc-section-number">3.2</span> Combinar data</a></li>
+</ul></li>
+<li><a href="visualización-de-datos.html#visualización-de-datos" id="toc-visualización-de-datos"><span class="toc-section-number">4</span> Visualización de datos</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Workshop: Tidyverse</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="análisis-preliminar" class="section level1" number="2">
+<h1><span class="header-section-number">Sección 2</span> Análisis preliminar</h1>
+<p>Las dos primeras fases de un análisis son la obtención y limpieza básica de nuestros datos. Aquí las cheatsheets de esta sección:</p>
+<ul>
+<li><p><a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-import.pdf">Data import</a></p></li>
+<li><p><a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/tidyr.pdf">Data tidying</a></p></li>
+</ul>
+<div id="data-import" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Data import</h2>
+<p>Normalmente, al iniciar un proyecto lo primero que hacemos es cargar los datos y las librerías que vamos a utilizar.</p>
+<p>Como regla general cargamos la librería <code>tidyverse</code> y la que utilizaremos para leer nuestras bases.
+Los archivos más comunes que utilizamos como fuentes de datos son .csv, o .xlsx. los .csv se leen con read.csv, y los .xlsx con la librería readxl.</p>
+<p>Como ejemplo para este ejercicio vamos a tomar la base de datos de <a href="https://extranet.who.int/ncdsmicrodata/index.php/catalog/GSHS">Global School-Based Student Health Survey</a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="análisis-preliminar.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="análisis-preliminar.html#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="análisis-preliminar.html#cb1-3" aria-hidden="true" tabindex="-1"></a>bol_12_raw <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/BOL2012_National.csv&quot;</span>)</span>
+<span id="cb1-4"><a href="análisis-preliminar.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="análisis-preliminar.html#cb1-5" aria-hidden="true" tabindex="-1"></a>bol_18_raw <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/BOL2018_National.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="data-tidying" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Data tidying</h2>
+<p>Esta base de datos está muy “limpia” pues viene de una encuesta que se hace de forma recurrente en muchos países, pero esto no pasa siempre.
+En este caso va a ser rápido tener nuestros datos listos para trabajarlos, pero normalmente tomaría un poco de limpieza inicial.</p>
+<p>Aquí lo único que vamos a hacer es tomar un diccionario de variables para renombrarlas y poder manipularlas más fácil y con menos posibilidad de error.
+Siempre es bueno empezar haciendo una exploración de los datos, para eso podemos usar el comando glimpse().</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="análisis-preliminar.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(bol_12_raw)</span></code></pre></div>
+<pre><code>## Rows: 3,696
+## Columns: 123
+## $ Q1       &lt;int&gt; 4, 4, 3, 1, 4, 1, 3, 3, NA, 2, 3, 1, 6, 3, 4, 3, 3, NA, 3, 3,~
+## $ Q2       &lt;int&gt; 2, NA, 1, 2, 2, 2, 1, 1, 1, 1, 1, NA, 1, 1, 1, 2, 1, 1, 1, 2,~
+## $ Q3       &lt;int&gt; 3, 3, 3, 3, 3, NA, 3, NA, 3, 3, 3, NA, 3, 3, 3, 3, 3, 3, 3, 3~
+## $ Q4       &lt;dbl&gt; NA, NA, NA, 1.51, 1.49, 1.45, 1.44, 1.58, NA, 1.38, 1.44, NA,~
+## $ Q5       &lt;int&gt; NA, NA, NA, 50, 43, 49, 33, 50, NA, 40, 36, NA, NA, 54, 54, 5~
+## $ Q6       &lt;int&gt; 1, 2, 2, 1, 1, 5, 1, 2, 1, 2, 1, 4, 5, 1, 3, 2, 3, 1, 1, NA, ~
+## $ Q7       &lt;int&gt; 3, 6, 6, 7, 4, 7, 3, 4, 3, 2, 2, 3, 2, 5, 5, 2, NA, 4, 3, 3, ~
+## $ Q8       &lt;int&gt; 2, 5, 3, 7, 7, 1, 3, 5, 3, 3, 3, 2, 3, 4, 2, 4, 7, 3, 3, 4, 7~
+## $ Q9       &lt;int&gt; 1, 3, 2, 7, 3, 7, 3, 5, 4, 3, 3, NA, 4, 2, 3, 7, 4, 3, NA, 2,~
+## $ Q10      &lt;int&gt; 2, 3, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 3, 1, NA, 2, 1, 4, NA, 1,~
+## $ Q11      &lt;int&gt; 3, 3, 2, 5, 3, 6, 4, 5, 5, 4, 4, 5, 5, 5, 4, 4, 5, 5, NA, 5, ~
+## $ Q12      &lt;int&gt; 4, 3, 4, 5, 5, 4, 4, 3, 5, 4, 4, 4, 5, 4, 4, 3, 5, 5, NA, 5, ~
+## $ Q13      &lt;int&gt; 4, 5, 3, 5, 5, 4, 5, 3, 5, 2, 2, 5, 5, 4, 5, 3, 5, 5, NA, 5, ~
+## $ Q14      &lt;int&gt; 3, 5, 4, 5, 4, 2, 3, 3, 5, 5, 4, 5, 5, 3, 5, 3, 5, 5, 5, 4, 3~
+## $ Q15      &lt;int&gt; 1, 1, 4, 1, 1, 2, NA, 2, 1, 1, 1, 1, 4, 1, 2, 1, 2, 8, 1, 1, ~
+## $ Q16      &lt;int&gt; 8, 1, 4, 1, 1, 2, 1, NA, 2, 1, 1, 1, 3, 1, 1, 3, 1, 3, 1, 1, ~
+## $ Q17      &lt;int&gt; 3, 1, 3, 2, 1, 2, 1, 1, 1, 2, 1, NA, 5, 1, 1, 1, 2, 1, 1, 1, ~
+## $ Q18      &lt;int&gt; 1, 1, 1, 4, 1, 1, 1, 1, 1, 8, 1, NA, 3, 1, 1, 1, 1, 1, 1, 1, ~
+## $ Q19      &lt;int&gt; 1, 1, 6, 3, 1, 1, 1, 1, 1, 3, 1, NA, 4, 1, 1, 1, 1, 1, 1, 1, ~
+## $ Q20      &lt;int&gt; 4, NA, 2, 1, 1, 2, 1, 1, 1, 1, 1, NA, NA, 1, 2, 1, 1, 7, 1, 1~
+## $ Q21      &lt;int&gt; 2, NA, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, NA, 1, 4, 1, 1, 2, 1, 1,~
+## $ Q22      &lt;int&gt; 4, 2, 3, 1, 1, 5, 1, 5, 3, 1, 1, 1, NA, 1, 1, 3, 1, 1, 1, 1, ~
+## $ Q23      &lt;int&gt; 4, 5, 3, 2, 2, 2, 1, 2, 2, 2, 1, 5, NA, 1, 1, 2, 1, 3, 1, 1, ~
+## $ Q24      &lt;int&gt; 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, NA, NA, 2, 2, 2, 1, 1, 2, 2,~
+## $ Q25      &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, NA, 2, NA, 2, 1, 1, 2, 2,~
+## $ Q26      &lt;int&gt; 1, 1, 4, NA, 1, 1, 1, 1, 2, 1, 1, NA, NA, 1, NA, 1, 1, 2, 1, ~
+## $ Q27      &lt;int&gt; 4, 2, 1, 2, 4, 1, 2, 1, 4, 3, 2, 3, NA, 4, 2, 4, 1, 4, 1, 4, ~
+## $ Q28      &lt;int&gt; 1, 1, 5, 4, 1, 4, 1, NA, 5, 1, 1, 1, NA, 1, 3, 1, 1, 5, 1, 1,~
+## $ Q29      &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, NA, NA, 1, 1, 1, 1, 2, 1, 1,~
+## $ Q30      &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, NA, NA, 1, 4, 1, 1, 1, 1, 1,~
+## $ Q31      &lt;int&gt; 1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, NA, NA, 1, NA, 1, 1, 3, 1, 1~
+## $ Q32      &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, NA, 1, 4, 1, 2, 2, 1, 1, ~
+## $ Q33      &lt;int&gt; 1, 4, 1, 1, 1, 1, 1, 1, 5, 1, 1, NA, NA, 1, 1, 1, 1, 5, 1, 1,~
+## $ Q34      &lt;int&gt; 1, 1, NA, 1, 1, NA, 1, 1, 5, 1, 1, 1, NA, NA, 1, 1, NA, 1, 1,~
+## $ Q35      &lt;int&gt; 1, 1, NA, 1, 1, 1, 1, 1, 1, 1, 1, NA, NA, 1, 1, 1, 1, 1, 1, 1~
+## $ Q36      &lt;int&gt; 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, NA, 1, 1, 1, 1, 1, 1, 1, ~
+## $ Q37      &lt;int&gt; 1, 1, NA, 1, 1, 1, 1, 1, 1, 1, 1, NA, NA, 1, 1, 1, 1, 1, 1, 1~
+## $ Q38      &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, NA, NA, 1, NA, 1, 1, 1, 1, 1~
+## $ Q39      &lt;int&gt; 1, 1, NA, 1, 1, NA, 1, NA, 1, 1, 1, NA, NA, 1, 1, 1, NA, 1, 1~
+## $ Q40      &lt;int&gt; 1, 1, 2, 1, 1, 1, 1, NA, 1, 1, 1, 1, NA, 1, 3, NA, NA, 1, NA,~
+## $ Q41      &lt;int&gt; 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, NA, NA, 1, 1, NA, 1, 1, 1, 1~
+## $ Q42      &lt;int&gt; 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, NA, NA, 1, 2, NA, NA, 1, 1, ~
+## $ Q43      &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, NA, NA, 1, NA, 1, NA, 1, 1, ~
+## $ Q44      &lt;int&gt; 2, 2, NA, 2, 2, 1, 2, 2, 2, 2, 2, NA, NA, 1, NA, NA, NA, 2, N~
+## $ Q45      &lt;int&gt; 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, NA, NA, 1, 1, 1, 1, 1, NA, 1~
+## $ Q46      &lt;int&gt; 1, 1, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, NA, 1, NA, 1, 1, 1, 1, 1,~
+## $ Q47      &lt;int&gt; 1, 1, NA, 1, 1, 1, 1, 1, 1, 1, 1, NA, NA, 1, NA, 1, NA, 1, 1,~
+## $ Q48      &lt;int&gt; 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, NA, NA, 1, NA, NA, NA, 1, 1,~
+## $ Q49      &lt;int&gt; 1, 1, 2, 3, 5, 1, 1, 6, 2, 2, NA, NA, NA, 7, 1, 6, 2, 5, 2, N~
+## $ Q50      &lt;int&gt; 1, 1, 3, 6, 5, 1, 1, 6, 1, 8, NA, NA, NA, 7, 6, 3, 8, 8, 2, 8~
+## $ Q51      &lt;int&gt; 6, 2, 2, 1, 6, 1, 1, 6, 1, 1, 2, NA, NA, 2, 2, 1, 2, 6, 1, 2,~
+## $ Q52      &lt;int&gt; 1, 1, 6, 1, 2, 1, NA, 3, 2, 2, 1, NA, NA, 1, 1, 1, 1, 1, NA, ~
+## $ Q53      &lt;int&gt; 1, 2, 2, 1, 1, 2, 2, 1, 1, 2, 1, 2, NA, 1, 5, 2, 2, 1, 1, 1, ~
+## $ Q54      &lt;int&gt; 2, 2, 3, 4, 4, 2, 1, 1, 4, 2, 2, 1, NA, 4, 2, 3, 5, 3, 1, 2, ~
+## $ Q55      &lt;int&gt; 1, 1, 4, 5, 4, 1, NA, 3, 4, 5, 2, NA, NA, 5, 4, 4, NA, 4, 1, ~
+## $ Q56      &lt;int&gt; 2, 2, 3, 5, 5, 1, 1, 2, 4, 4, 1, 1, NA, 5, 4, 2, 2, 1, 1, NA,~
+## $ Q57      &lt;int&gt; 2, 2, 2, 5, 4, 2, 1, 3, 3, 3, 2, NA, NA, 5, 4, 2, 2, 5, 1, NA~
+## $ Q58      &lt;int&gt; 1, 1, 4, 5, 1, 1, 1, 1, NA, 1, 1, NA, NA, 1, 5, 3, NA, 5, 1, ~
+## $ QN6      &lt;int&gt; 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, NA, ~
+## $ QN7      &lt;int&gt; 2, 1, 1, 1, 1, 1, 2, 1, 2, 2, 2, 2, 2, 1, 1, 2, NA, 1, 2, 2, ~
+## $ QN8      &lt;int&gt; 2, 1, 2, 1, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1~
+## $ QN9      &lt;int&gt; 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, NA, 1, 2, 1, 1, 1, 1, NA, 2,~
+## $ QN10     &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, NA, 2, 2, 1, NA, 2,~
+## $ QN11     &lt;int&gt; 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, NA, 2, ~
+## $ QN12     &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, NA, 2, ~
+## $ QN13     &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, NA, 2, ~
+## $ QN14     &lt;int&gt; 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2~
+## $ QN15     &lt;int&gt; 2, 2, 1, 2, 2, 1, NA, 1, 2, 2, 2, 2, 1, 2, 1, 2, 1, 1, 2, 2, ~
+## $ QN16     &lt;int&gt; 1, 2, 1, 2, 2, 1, 2, NA, 1, 2, 2, 2, 1, 2, 2, 1, 2, 1, 2, 2, ~
+## $ QN17     &lt;int&gt; 1, 2, 1, 1, 2, 1, 2, 2, 2, 1, 2, NA, 1, 2, 2, 2, 1, 2, 2, 2, ~
+## $ QN18     &lt;int&gt; NA, NA, NA, 2, NA, NA, NA, NA, NA, 2, NA, NA, 2, NA, NA, NA, ~
+## $ QN19     &lt;int&gt; NA, NA, 2, 2, NA, NA, NA, NA, NA, 2, NA, NA, 2, NA, NA, NA, N~
+## $ QN20     &lt;int&gt; 1, NA, 1, 2, 2, 1, 2, 2, 2, 2, 2, NA, NA, 2, 1, 2, 2, 1, 2, 2~
+## $ QN21     &lt;int&gt; 1, NA, 1, NA, NA, NA, NA, NA, NA, NA, NA, 1, NA, NA, 2, NA, N~
+## $ QN22     &lt;int&gt; 1, 2, 2, 2, 2, 1, 2, 1, 2, 2, 2, 2, NA, 2, 2, 2, 2, 2, 2, 2, ~
+## $ QN23     &lt;int&gt; 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, NA, 2, 2, 2, 2, 2, 2, 2, ~
+## $ QN24     &lt;int&gt; 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, NA, NA, 2, 2, 2, 1, 1, 2, 2,~
+## $ QN25     &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, NA, 2, NA, 2, 1, 1, 2, 2,~
+## $ QN26     &lt;int&gt; 2, 2, 1, NA, 2, 2, 2, 2, 1, 2, 2, NA, NA, 2, NA, 2, 2, 1, 2, ~
+## $ QN27     &lt;int&gt; 2, 2, 1, 2, 2, 1, 2, 1, 2, 2, 2, 2, NA, 2, 2, 2, 1, 2, 1, 2, ~
+## $ QN28     &lt;int&gt; NA, NA, 1, 1, NA, 1, NA, NA, 1, NA, NA, NA, NA, NA, 1, NA, NA~
+## $ QN29     &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, NA, NA, 2, 2, 2, 2, 1, 2, 2,~
+## $ QN30     &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, NA, NA, 2, 1, 2, 2, 2, 2, 2,~
+## $ QN31     &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
+## $ QN32     &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, NA, 2, 1, 2, 1, 1, 2, 2, ~
+## $ QN33     &lt;int&gt; 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, NA, NA, 2, 2, 2, 2, 2, 2, 2,~
+## $ QN34     &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, 1, NA, NA, NA, NA, NA, NA, NA~
+## $ QN35     &lt;int&gt; 2, 2, NA, 2, 2, 2, 2, 2, 2, 2, 2, NA, NA, 2, 2, 2, 2, 2, 2, 2~
+## $ QN36     &lt;int&gt; NA, NA, 2, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA~
+## $ QN37     &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
+## $ QN38     &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, NA, NA, 2, NA, 2, 2, 2, 2, 2~
+## $ QN39     &lt;int&gt; 2, 2, NA, 2, 2, NA, 2, NA, 2, 2, 2, NA, NA, 2, 2, 2, NA, 2, 2~
+## $ QN40     &lt;int&gt; NA, NA, 1, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 1, NA,~
+## $ QN41     &lt;int&gt; 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, NA, NA, 2, 2, NA, 2, 2, 2, 2~
+## $ QN42     &lt;int&gt; 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, NA, NA, 2, 1, NA, NA, 2, 2, ~
+## $ QN43     &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, NA, NA, 2, NA, 2, NA, 2, 2, ~
+## $ QN44     &lt;int&gt; 2, 2, NA, 2, 2, 1, 2, 2, 2, 2, 2, NA, NA, 1, NA, NA, NA, 2, N~
+## $ QN45     &lt;int&gt; NA, NA, 1, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA~
+## $ QN46     &lt;int&gt; 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, NA, 2, NA, 2, 2, 2, 2, 2,~
+## $ QN47     &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~
+## $ QN48     &lt;int&gt; NA, NA, 2, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA~
+## $ QN49     &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, NA, NA, NA, 1, 2, 1, 2, 2, 2, N~
+## $ QN50     &lt;int&gt; 1, 1, 2, 2, 2, 1, 1, 2, 1, 2, NA, NA, NA, 2, 2, 2, 2, 2, 2, 2~
+## $ QN51     &lt;int&gt; 1, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, NA, NA, 2, 2, 2, 2, 1, 2, 2,~
+## $ QN52     &lt;int&gt; 2, 2, 1, 2, 2, 2, NA, 1, 2, 2, 2, NA, NA, 2, 2, 2, 2, 2, NA, ~
+## $ QN53     &lt;int&gt; 2, 1, 1, 2, 2, 1, 1, 2, 2, 1, 2, 1, NA, 2, 1, 1, 1, 2, 2, 2, ~
+## $ QN54     &lt;int&gt; 2, 2, 2, 1, 1, 2, 2, 2, 1, 2, 2, 2, NA, 1, 2, 2, 1, 2, 2, 2, ~
+## $ QN55     &lt;int&gt; 2, 2, 1, 1, 1, 2, NA, 2, 1, 1, 2, NA, NA, 1, 1, 1, NA, 1, 2, ~
+## $ QN56     &lt;int&gt; 2, 2, 2, 1, 1, 2, 2, 2, 1, 1, 2, 2, NA, 1, 1, 2, 2, 2, 2, NA,~
+## $ QN57     &lt;int&gt; 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, NA, NA, 1, 1, 2, 2, 1, 2, NA~
+## $ QN58     &lt;int&gt; 1, 1, 2, 2, 1, 1, 1, 1, NA, 1, 1, NA, NA, 1, 2, 2, NA, 2, 1, ~
+## $ qnowtg   &lt;int&gt; NA, NA, NA, 1, 2, 1, 2, 2, NA, 1, 2, NA, NA, 1, 2, 1, 2, NA, ~
+## $ qnobeseg &lt;int&gt; NA, NA, NA, 2, 2, 2, 2, 2, NA, 2, 2, NA, NA, 2, 2, 2, 2, NA, ~
+## $ qnunwtg  &lt;int&gt; NA, NA, NA, 2, 2, 2, 2, 2, NA, 2, 2, NA, NA, 2, 2, 2, 2, NA, ~
+## $ qnfrvgg  &lt;int&gt; 2, 1, 1, 1, 1, 1, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, NA, 2, 2, 2, ~
+## $ qnanytbg &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, NA, NA, 2, 1, 2, 2, 1, 2, 2,~
+## $ qnpa7g   &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, NA, NA, NA, 2, 2, 2, 2, 2, 2, N~
+## $ qnpe5g   &lt;int&gt; 1, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, NA, NA, 2, 2, 2, 2, 1, 2, 2,~
+## $ qnc1g    &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, 2, NA, NA, NA, NA, NA, NA, NA~
+## $ qnc2g    &lt;int&gt; 1, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA~
+## $ weight   &lt;dbl&gt; 188.7187, 219.5043, 219.5043, 188.7187, 188.7187, 188.7187, 2~
+## $ stratum  &lt;int&gt; 201201008, 201201008, 201201008, 201201008, 201201008, 201201~
+## $ psu      &lt;int&gt; 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 1~</code></pre>
+<p>Vemos que nuestros datos tienen nombres limpios aunque poco amigables, por lo que vamos a renombrarlos usando un diccionario.
+Aunque antes de hacerlo vamos a explicar uno de los commandos más útiles en R.
+A medida que los scripts se hacer más extensos es dificil empezar a seguir las operaciones que le hacemos a un dataframe.
+En R, por lo general vamos a utilizar un dataframe o objeto al que nombraremos con el commando <code>&lt;-</code> y para entender lo que le estamos haciendo a ese dataframe vamos a utilizar el pipe <code>%&gt;%</code>
+El pipe se utiliza para dar “foco” a las acciones que se hacen a un objeto.</p>
+<p>El shortcut en el teclado para el pipe es <code>Ctrl</code> <code>shift</code> <code>m</code></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="análisis-preliminar.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb4-2"><a href="análisis-preliminar.html#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="análisis-preliminar.html#cb4-3" aria-hidden="true" tabindex="-1"></a>diccionario <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/diccionario_variables.csv&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-4"><a href="análisis-preliminar.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">question =</span> <span class="fu">tolower</span>(question)) </span>
+<span id="cb4-5"><a href="análisis-preliminar.html#cb4-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-6"><a href="análisis-preliminar.html#cb4-6" aria-hidden="true" tabindex="-1"></a>data_rename_18 <span class="ot">&lt;-</span> bol_18_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb4-7"><a href="análisis-preliminar.html#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setnames</span>(<span class="at">old =</span> diccionario<span class="sc">$</span>question, <span class="at">new =</span> diccionario<span class="sc">$</span>variable, <span class="at">skip_absent =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb4-8"><a href="análisis-preliminar.html#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="análisis-preliminar.html#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data_rename_18)</span></code></pre></div>
+<pre><code>## Rows: 7,931
+## Columns: 115
+## $ site                 &lt;chr&gt; &quot;BL&quot;, &quot;BL&quot;, &quot;BL&quot;, &quot;BL&quot;, &quot;BL&quot;, &quot;BL&quot;, &quot;BL&quot;, &quot;BL&quot;, &quot;~
+## $ record               &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15~
+## $ age                  &lt;int&gt; 6, 5, 7, 6, 7, 6, 8, 8, 6, 6, 8, 7, 7, 8, 7, 6, 6~
+## $ sex                  &lt;int&gt; 1, 1, 2, 2, 1, 1, 2, 1, 1, 1, 2, 2, 2, 2, 2, 1, 2~
+## $ education_level      &lt;int&gt; 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4~
+## $ q4                   &lt;dbl&gt; NA, NA, 1.51, 1.56, 1.66, NA, NA, 1.65, NA, NA, 1~
+## $ q5                   &lt;int&gt; NA, NA, 47, 55, 58, NA, NA, 68, NA, NA, 51, 60, 6~
+## $ q6                   &lt;int&gt; 1, 1, 2, 3, 1, 2, 2, 1, 4, 1, 1, 3, 3, 2, 1, 2, 2~
+## $ q10                  &lt;int&gt; 1, 1, 5, 2, 3, 2, 1, 1, 1, 1, 4, 1, 6, 2, 3, 1, 5~
+## $ q11                  &lt;int&gt; 4, 2, 5, 4, 5, 5, 3, 4, 2, 4, 5, 3, 3, 3, NA, 3, ~
+## $ q12                  &lt;int&gt; 5, 1, 3, 4, 4, 2, NA, 4, 3, 5, 4, 3, 3, 5, 5, 4, ~
+## $ q13                  &lt;int&gt; 5, 3, 4, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 5, 5, 5, 4~
+## $ q14                  &lt;int&gt; 2, 1, 4, 3, 5, 4, 5, 5, 3, 4, 4, 3, 4, 5, 5, 4, 4~
+## $ attacked             &lt;int&gt; 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 2, 2, 2, 5, 1, 1, 1~
+## $ fight                &lt;int&gt; 2, 2, 1, 1, 8, 2, 1, 3, 1, 1, 1, 3, 3, 5, 2, 2, 2~
+## $ injured              &lt;int&gt; 3, NA, 2, NA, 4, 3, 6, 3, 1, 4, 2, 3, 3, 7, 2, 1,~
+## $ q18                  &lt;int&gt; 1, NA, 1, NA, 8, 8, 1, 8, 1, 8, 4, 8, 8, 8, 6, 1,~
+## $ q19                  &lt;int&gt; 2, 1, 1, 1, 8, 3, 1, 8, 1, 8, 8, 8, 8, NA, 3, 1, ~
+## $ felt_lonely          &lt;int&gt; 1, 1, 2, 2, NA, 2, 5, 3, NA, 2, 3, 2, 1, 3, 3, 3,~
+## $ worried_sleep        &lt;int&gt; 1, NA, 2, 3, 3, 2, 3, 3, 4, 1, 2, 2, 2, 2, 3, 3, ~
+## $ consider_suicide     &lt;int&gt; NA, NA, 2, 1, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, NA, 2~
+## $ plan_suicide         &lt;int&gt; 1, NA, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, ~
+## $ attempt_suicide      &lt;int&gt; 1, 3, 1, 1, 2, 1, 4, 2, 1, 1, 1, 1, 1, 1, 2, 1, 2~
+## $ q27                  &lt;int&gt; 2, 1, 4, 2, 4, 4, 2, 4, 4, 4, 3, 4, 4, 3, NA, 4, ~
+## $ q34                  &lt;int&gt; 4, 3, 6, 5, 6, 1, 2, 4, 7, NA, 6, 6, NA, 5, 4, 6,~
+## $ q35                  &lt;int&gt; 1, 3, 3, 2, 2, 1, 1, 2, 2, NA, 1, 3, NA, 3, 1, 4,~
+## $ q36                  &lt;int&gt; 3, 1, 5, 2, 3, 1, 1, 5, 3, NA, 1, 7, 2, 5, 1, 4, ~
+## $ q37                  &lt;int&gt; 2, 2, 4, 3, 2, 1, 1, 2, 2, NA, 1, 7, NA, 2, 3, 4,~
+## $ q38                  &lt;int&gt; 2, 1, 2, 2, 2, 1, 1, 2, 2, 1, 1, 1, 1, 2, 1, 1, 3~
+## $ q39                  &lt;int&gt; 2, 2, 2, 2, 2, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 3~
+## $ q40                  &lt;int&gt; 3, NA, 1, 7, 2, 1, 1, 1, 1, 1, 6, 6, 7, 6, 7, 1, ~
+## $ q41                  &lt;int&gt; 3, NA, 1, 2, 2, 1, 1, 1, 1, 1, 3, 5, 3, 3, 2, 1, ~
+## $ q42                  &lt;int&gt; 2, NA, 1, 2, 2, 1, 1, 1, 1, 1, 3, 4, 2, 3, 2, 1, ~
+## $ q43                  &lt;int&gt; 2, NA, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, ~
+## $ ever_sex             &lt;int&gt; 1, NA, 1, 2, 1, 1, 2, 2, NA, 2, 2, 2, 2, 1, 2, 1,~
+## $ age_first_sex        &lt;int&gt; 2, NA, 6, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 7, 1, 6, ~
+## $ people_sex           &lt;int&gt; 1, NA, 1, 1, 7, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 4, ~
+## $ condom_last          &lt;int&gt; 3, NA, 3, 1, 2, 1, 1, 1, NA, 1, 1, 1, 1, 2, 1, 2,~
+## $ birth_control_last   &lt;int&gt; 2, 1, 3, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 3, 1~
+## $ days_active          &lt;int&gt; 1, 3, 3, 3, 8, 6, 1, 5, NA, 2, 8, 8, 1, 6, 4, 6, ~
+## $ walk_ride_school     &lt;int&gt; 4, 2, 5, 2, 3, 6, 1, 8, 2, 4, 4, 4, 3, 8, 1, 8, 2~
+## $ school_pe            &lt;int&gt; 2, 3, NA, 1, 6, 6, 1, 1, 2, 2, 6, 6, 2, 2, 2, 2, ~
+## $ hours_sitting        &lt;int&gt; 4, 3, 4, 3, 6, 3, 1, 2, 6, 2, 2, 2, 2, 3, 2, 4, 4~
+## $ q53                  &lt;int&gt; 1, 3, 3, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 2, 2, 3, 1~
+## $ q54                  &lt;int&gt; 5, 5, 3, 4, 5, 4, 1, 4, 2, 5, 4, 4, 3, 4, 2, 3, 4~
+## $ q55                  &lt;int&gt; 3, 1, 3, 3, 5, 2, 1, 4, 2, 2, 4, 4, 1, 2, 2, 3, 4~
+## $ q56                  &lt;int&gt; 1, 4, 2, 2, 5, 2, 1, 3, 2, 1, 4, 4, 3, 4, 2, 3, 3~
+## $ q57                  &lt;int&gt; 3, 2, 2, 2, 5, 3, 1, 5, 2, 2, 2, 2, 4, 2, 2, 3, 3~
+## $ q58                  &lt;int&gt; 2, 1, 1, 3, NA, 2, 1, 2, 1, 1, 1, 1, 1, 1, 4, 3, ~
+## $ q59                  &lt;int&gt; 3, 7, 3, 3, 3, 2, 1, 2, 3, 2, 5, 3, 4, 3, 2, 6, 2~
+## $ q60                  &lt;int&gt; 1, 3, 2, 2, 3, 4, 2, 1, 3, 2, 5, 3, 4, 3, 6, 5, 2~
+## $ q61                  &lt;int&gt; 3, 2, 6, 2, 3, 6, 7, 1, 2, 4, 1, 1, 7, 2, 2, 5, 3~
+## $ q98                  &lt;int&gt; NA, NA, 1, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2,~
+## $ q99                  &lt;int&gt; 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2~
+## $ q100                 &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2~
+## $ qn6                  &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2~
+## $ qn10                 &lt;int&gt; 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 2, 1, 2, 2, 2, 1, 2~
+## $ qn11                 &lt;int&gt; 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, NA, 1, ~
+## $ qn12                 &lt;int&gt; 2, 1, 2, 2, 2, 1, NA, 2, 2, 2, 2, 2, 2, 2, 2, 2, ~
+## $ qn13                 &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2~
+## $ qn14                 &lt;int&gt; 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2~
+## $ attacked_pct         &lt;int&gt; 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 1, 1, 1, 1, 2, 2, 2~
+## $ fight_pct            &lt;int&gt; 1, 1, 2, 2, 1, 1, 2, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1~
+## $ injured_pct          &lt;int&gt; 1, NA, 1, NA, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2,~
+## $ qn18                 &lt;int&gt; NA, NA, NA, NA, 2, 2, NA, 2, NA, 2, 2, 2, 2, 2, 2~
+## $ qn19                 &lt;int&gt; 1, NA, NA, NA, 2, 2, NA, 2, NA, 2, 2, 2, 2, NA, 2~
+## $ felt_lonely_pct      &lt;int&gt; 2, 2, 2, 2, NA, 2, 1, 2, NA, 2, 2, 2, 2, 2, 2, 2,~
+## $ worried_sleep_pct    &lt;int&gt; 2, NA, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, ~
+## $ qn24                 &lt;int&gt; NA, NA, 2, 1, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, NA, 2~
+## $ qn25                 &lt;int&gt; 1, NA, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, ~
+## $ attempt_suicide_pct  &lt;int&gt; 2, 1, 2, 2, 1, 2, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 1~
+## $ qn27                 &lt;int&gt; 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, NA, 2, ~
+## $ qn34                 &lt;int&gt; 1, 1, 2, 1, 2, NA, 1, 1, 2, NA, 2, 2, NA, 1, 1, 2~
+## $ qn35                 &lt;int&gt; 2, 1, 1, 1, 1, 2, 2, 1, 1, NA, 2, 1, NA, 1, 2, 1,~
+## $ qn36                 &lt;int&gt; 2, NA, 1, 2, 2, NA, NA, 1, 2, NA, NA, 1, 2, 1, NA~
+## $ qn37                 &lt;int&gt; 2, 2, 1, 2, 2, NA, NA, 2, 2, NA, NA, 2, NA, 2, 2,~
+## $ qn38                 &lt;int&gt; 1, 2, 1, 1, 1, 2, 2, 1, 1, 2, 2, 2, 2, 1, 2, 2, 1~
+## $ qn39                 &lt;int&gt; 1, 1, 1, 1, 1, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1~
+## $ qn40                 &lt;int&gt; 1, NA, NA, 2, 1, NA, NA, NA, NA, NA, 2, 2, 2, 2, ~
+## $ qn41                 &lt;int&gt; 1, NA, 2, 1, 1, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 2, ~
+## $ qn42                 &lt;int&gt; 1, NA, 2, 1, 1, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 2, ~
+## $ qn43                 &lt;int&gt; 1, NA, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, ~
+## $ qn44                 &lt;int&gt; 1, NA, 1, 2, 1, 1, 2, 2, NA, 2, 2, 2, 2, 1, 2, 1,~
+## $ age_first_sex14      &lt;int&gt; 1, NA, 2, NA, 1, NA, NA, NA, NA, NA, NA, NA, NA, ~
+## $ people_sex_2         &lt;int&gt; 2, NA, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, ~
+## $ condom_last_pct      &lt;int&gt; 2, NA, 2, NA, 1, NA, NA, NA, NA, NA, NA, NA, NA, ~
+## $ qn48                 &lt;int&gt; 1, NA, 2, NA, 1, NA, NA, NA, NA, NA, NA, NA, NA, ~
+## $ active_60            &lt;int&gt; 1, 2, 2, 2, 2, 2, 1, 2, NA, 2, 2, 2, 1, 2, 2, 2, ~
+## $ walk_ride_school_pct &lt;int&gt; 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2~
+## $ qn51                 &lt;int&gt; 2, 2, NA, 1, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, ~
+## $ qn52                 &lt;int&gt; 1, 1, 1, 1, 1, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2, 1, 1~
+## $ qn53                 &lt;int&gt; 2, 1, 1, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, 1, 1, 1, 2~
+## $ qn54                 &lt;int&gt; 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 2, 2, 1~
+## $ qn55                 &lt;int&gt; 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 2, 2, 2, 1~
+## $ qn56                 &lt;int&gt; 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 1, 1, 2, 1, 2, 2, 2~
+## $ qn57                 &lt;int&gt; 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2~
+## $ qn58                 &lt;int&gt; 1, 1, 1, 2, NA, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, ~
+## $ qn59                 &lt;int&gt; 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2~
+## $ qn60                 &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2~
+## $ qn61                 &lt;int&gt; 2, 2, 1, 2, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2~
+## $ qn98                 &lt;int&gt; NA, NA, 1, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2,~
+## $ qn99                 &lt;int&gt; 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2~
+## $ qn100                &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2~
+## $ qnff1g               &lt;int&gt; 2, 2, 1, 1, 1, 1, 2, 2, 2, 2, 1, 2, 1, 1, 1, 2, 1~
+## $ qnff2g               &lt;int&gt; 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, 1, 2, 1, 2, 1, 2, 1~
+## $ qnff3g               &lt;int&gt; 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 2, 2, 1~
+## $ qnbcanyg             &lt;int&gt; 1, NA, 2, NA, 1, NA, NA, NA, NA, NA, NA, NA, NA, ~
+## $ qnc1g                &lt;int&gt; 1, NA, 1, 2, 1, NA, NA, 2, NA, NA, NA, NA, NA, 1,~
+## $ qnpa5g               &lt;int&gt; 2, 2, 2, 2, 1, 1, 2, 2, NA, 2, 1, 1, 2, 1, 2, 1, ~
+## $ qnpa7g               &lt;int&gt; 2, 2, 2, 2, 1, 2, 2, 2, NA, 2, 1, 1, 2, 2, 2, 2, ~
+## $ qnpe3g               &lt;int&gt; 2, 2, NA, 2, 1, 1, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, ~
+## $ qnpe5g               &lt;int&gt; 2, 2, NA, 2, 1, 1, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, ~
+## $ weight               &lt;dbl&gt; 287.2826, 287.2826, 232.6328, 232.6328, 168.1811,~
+## $ stratum              &lt;int&gt; 201801011, 201801011, 201801011, 201801011, 20180~
+## $ psu                  &lt;int&gt; 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 2~</code></pre>
+<p>Vemos como las funciones ya tienen nombres más claros (únicamente para algunas variables ya que son las que vamos a necesitar), y podemos seguir con la transformación de nuestros datos.
+Aquí hay otras funciones que nos podrían ayudar si quisieramos quitar los NAs o hacer otro tipo de transformaciones, pero en este caos vamos a utilizar todos los datos.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="manipulación-de-datos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/master/01-analisis-preliminar.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/master/01-analisis-preliminar.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Workshop: Tidyverse</title>
+  <meta name="description" content="Workshop: Tidyverse" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Workshop: Tidyverse" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Workshop: Tidyverse" />
+  
+  
+  
+
+<meta name="author" content="María Reyes Retana" />
+
+
+<meta name="date" content="2022-08-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="análisis-preliminar.html"/>
+<script src="libs/header-attrs-2.11.3/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/toc.css" type="text/css" />
+<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="css/cajas.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Workshop Tidyverse</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#workshop-introducción-a-tidyverse" id="toc-workshop-introducción-a-tidyverse"><span class="toc-section-number">1</span> Workshop: Introducción a tidyverse</a>
+<ul>
+<li><a href="index.html#primeros-pasos" id="toc-primeros-pasos"><span class="toc-section-number">1.1</span> Primeros pasos</a></li>
+<li><a href="index.html#porqué-tidyverse" id="toc-porqué-tidyverse"><span class="toc-section-number">1.2</span> ¿Porqué Tidyverse?</a></li>
+<li><a href="index.html#recursos-adicionales" id="toc-recursos-adicionales"><span class="toc-section-number">1.3</span> Recursos adicionales</a></li>
+</ul></li>
+<li><a href="análisis-preliminar.html#análisis-preliminar" id="toc-análisis-preliminar"><span class="toc-section-number">2</span> Análisis preliminar</a>
+<ul>
+<li><a href="análisis-preliminar.html#data-import" id="toc-data-import"><span class="toc-section-number">2.1</span> Data import</a></li>
+<li><a href="análisis-preliminar.html#data-tidying" id="toc-data-tidying"><span class="toc-section-number">2.2</span> Data tidying</a></li>
+</ul></li>
+<li><a href="manipulación-de-datos.html#manipulación-de-datos" id="toc-manipulación-de-datos"><span class="toc-section-number">3</span> Manipulación de datos</a>
+<ul>
+<li><a href="manipulación-de-datos.html#modificar-data" id="toc-modificar-data"><span class="toc-section-number">3.1</span> Modificar data</a></li>
+<li><a href="manipulación-de-datos.html#combinar-data" id="toc-combinar-data"><span class="toc-section-number">3.2</span> Combinar data</a></li>
+</ul></li>
+<li><a href="visualización-de-datos.html#visualización-de-datos" id="toc-visualización-de-datos"><span class="toc-section-number">4</span> Visualización de datos</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Workshop: Tidyverse</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Workshop: Tidyverse</h1>
+<p class="author"><em>María Reyes Retana</em></p>
+<p class="date"><em>2022-08-08</em></p>
+</div>
+<div id="workshop-introducción-a-tidyverse" class="section level1" number="1">
+<h1><span class="header-section-number">Sección 1</span> Workshop: Introducción a tidyverse</h1>
+<p><strong>SCL Data - Data Ecosystem Working Group</strong></p>
+<p><a href="https://scldata.iadb.org"><img src="https://scldata.iadb.org/assets/iadb-7779368a000004449beca0d4fc6f116cc0617572d549edf2ae491e9a17f63778.png" alt="IDB Logo" /></a></p>
+<p>Este es un taller básico para el uso de R y tidyverse para el análisis de datos.
+El contenido del taller será el siguiente:</p>
+<ul>
+<li><strong>1. Preliminares</strong>
+<ul>
+<li>Cheatsheets</li>
+<li>Cargar paquetes</li>
+<li>Importar data</li>
+<li>Exploración básica</li>
+</ul></li>
+<li><strong>2. Reshape your data</strong>
+<ul>
+<li>Pivot_longer, pivot_wider</li>
+<li>Append, left_join</li>
+</ul></li>
+<li><strong>3. Limpieza y modificación</strong>
+<ul>
+<li>Filter, select</li>
+<li>Mutate</li>
+<li>Group_by, summarize</li>
+</ul></li>
+<li><strong>4. Visualization with tidy data/ ggplot</strong></li>
+</ul>
+<p>Para la elaboración de este curso utilice estos cursos de github:</p>
+<ul>
+<li><p><a href="https://github.com/tereom/r-analisis-datos">Análisis de datos</a></p></li>
+<li><p><a href="https://github.com/nuitrcs/r-tidyverse">Tidyverse</a></p></li>
+</ul>
+<div id="primeros-pasos" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Primeros pasos</h2>
+<p>Antes de que inicie el workshop deberás tener instalado <a href="https://cran.r-project.org">R</a> y <a href="https://www.rstudio.com/products/rstudio/download/">R studio</a>
+en tu computadora.</p>
+<p>Si tienes computadora del banco debes de solicitarlo a ITE.
+Adicionalmente deberás instalar o actualizar el paquete tidyverse. <br> <code>install.packages(c("tidyverse"))</code> <br></p>
+</div>
+<div id="porqué-tidyverse" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> ¿Porqué Tidyverse?</h2>
+<p>Una de las grandes ventajas de R es que tiene una gran comunidad activa. Esto ha generado que exista una gran cantidad de paquetes que están disponibles para nosotros para el análisis de datos.
+Desde RStudio podemos intalar estos <em>paquetes</em> <code>install.packages("nombre_paquete")</code> y así aprovechar el talento de otros para hacer nuestro trabajo más sencillo.</p>
+<p>En particular, Tidyverse es un conjunto de paquetes que fue creado para la manipulación, exploración y visualización de datos. Estos paquetes comparten un diseño común y tienen el objetivo de hacer más fácil el flujo de trabajo en el análisis de datos. La siguiente imagen muestra qué paquetes del Tidyverse se utilizan en las distintas etapas del análisis de datos.</p>
+<p><img src="img/tidyverse.jpg" width="700px" /></p>
+<p>Pueden leer aquí el artículo completo de <a href="https://rviews.rstudio.com/2017/06/08/what-is-the-tidyverse/">What is the tidyverse?</a></p>
+</div>
+<div id="recursos-adicionales" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Recursos adicionales</h2>
+<p>Hay múltiples recursos para aprender R de forma gratuira, aquí les dejo unos de los que me han ayudado.</p>
+<ul>
+<li><a href="https://www.rstudio.com/resources/cheatsheets/">Cheatsheets</a></li>
+<li><a href="https://www.data-to-viz.com">Data-to-viz.com</a></li>
+<li><a href="https://www.r-graph-gallery.com">R Graph Gallery</a></li>
+<li><a href="https://leanpub.com/rprogramming">R Programming for Data Science: Peng</a></li>
+<li><a href="http://adv-r.had.co.nz/">Guía de estilo</a></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="análisis-preliminar.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/master/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/master/index.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

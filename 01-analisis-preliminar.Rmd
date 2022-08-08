@@ -1,0 +1,74 @@
+
+# Análisis preliminar 
+
+Las dos primeras fases de un análisis son la obtención y limpieza básica de nuestros datos. Aquí las cheatsheets de esta sección:
+
+* [Data import](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-import.pdf)
+
+* [Data tidying](https://raw.githubusercontent.com/rstudio/cheatsheets/main/tidyr.pdf)
+
+## Data import
+
+
+Normalmente, al iniciar un proyecto lo primero que hacemos es cargar los datos y las librerías que vamos a utilizar. 
+
+Como regla general cargamos la librería `tidyverse` y la que utilizaremos para leer nuestras bases.
+Los archivos más comunes que utilizamos como fuentes de datos son .csv, o .xlsx. los .csv se leen con read.csv, y los .xlsx con la librería readxl.
+
+Como ejemplo para este ejercicio vamos a tomar la base de datos de [Global School-Based Student Health Survey](https://extranet.who.int/ncdsmicrodata/index.php/catalog/GSHS)
+
+```{r, include=FALSE}
+source('data/source.R')
+
+```
+
+```{r, out.width = "700px", include=T, echo=T, warning=FALSE, eval=FALSE}
+
+library(tidyverse)
+
+bol_12_raw <- read.csv("data/BOL2012_National.csv")
+
+bol_18_raw <- read.csv("data/BOL2018_National.csv")
+
+```
+
+## Data tidying
+
+Esta base de datos está muy "limpia" pues viene de una encuesta que se hace de forma recurrente en muchos países, pero esto no pasa siempre. 
+En este caso va a ser rápido tener nuestros datos listos para trabajarlos, pero normalmente tomaría un poco de limpieza inicial. 
+
+Aquí lo único que vamos a hacer es tomar un diccionario de variables para renombrarlas y poder manipularlas más fácil y con menos posibilidad de error. 
+Siempre es bueno empezar haciendo una exploración de los datos, para eso podemos usar el comando glimpse().
+
+```{r, out.width = "700px", include = T, echo = T, warning = FALSE}
+
+glimpse(bol_12_raw)
+
+
+```
+
+Vemos que nuestros datos tienen nombres limpios aunque poco amigables, por lo que vamos a renombrarlos usando un diccionario. 
+Aunque antes de hacerlo vamos a explicar uno de los commandos más útiles en R.
+A medida que los scripts se hacer más extensos es dificil empezar a seguir las operaciones que le hacemos a un dataframe. 
+En R, por lo general vamos a utilizar un dataframe o objeto al que nombraremos con el commando `<-` y para entender lo que le estamos haciendo a ese dataframe vamos a utilizar el pipe ` %>% `
+El pipe se utiliza para dar "foco" a las acciones que se hacen a un objeto. 
+ 
+El shortcut en el teclado para el pipe es `Ctrl` `shift` `m`
+
+```{r, out.width = "700px", include = T, echo = T, warning = FALSE}
+
+library(data.table)
+
+diccionario <- read.csv("data/diccionario_variables.csv") %>% 
+  mutate(question = tolower(question)) 
+  
+data_rename_18 <- bol_18_raw %>% 
+  setnames(old = diccionario$question, new = diccionario$variable, skip_absent = TRUE) 
+
+glimpse(data_rename_18)
+
+
+```
+
+Vemos como las funciones ya tienen nombres más claros (únicamente para algunas variables ya que son las que vamos a necesitar), y podemos seguir con la transformación de nuestros datos.
+Aquí hay otras funciones que nos podrían ayudar si quisieramos quitar los NAs o hacer otro tipo de transformaciones, pero en este caos vamos a utilizar todos los datos.

@@ -46,7 +46,7 @@ en tu computadora.
 Si tienes computadora del banco debes de solicitarlo a ITE.
 Adicionalmente deberás instalar o actualizar el paquete tidyverse. <br> `install.packages(c("tidyverse"))` <br> 
  
-## Porqué Tidyverse? 
+## ¿Porqué Tidyverse? 
  
 Una de las grandes ventajas de R es que tiene una gran comunidad activa. Esto ha generado que exista una gran cantidad de paquetes que están disponibles para nosotros para el análisis de datos. 
 Desde RStudio podemos intalar estos *paquetes* `install.packages("nombre_paquete")` y así aprovechar el talento de otros para hacer nuestro trabajo más sencillo.
@@ -70,3 +70,4 @@ Hay múltiples recursos para aprender R de forma gratuira, aquí les dejo unos d
 - [Data-to-viz.com](https://www.data-to-viz.com)
 - [R Graph Gallery](https://www.r-graph-gallery.com)
 - [R Programming for Data Science: Peng](https://leanpub.com/rprogramming)
+- [Guía de estilo](http://adv-r.had.co.nz/)

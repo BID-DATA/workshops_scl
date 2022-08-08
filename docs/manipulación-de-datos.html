@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Sección 3 Manipulación de datos | Workshop: Tidyverse</title>
+  <meta name="description" content="Sección 3 Manipulación de datos | Workshop: Tidyverse" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Sección 3 Manipulación de datos | Workshop: Tidyverse" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Sección 3 Manipulación de datos | Workshop: Tidyverse" />
+  
+  
+  
+
+<meta name="author" content="María Reyes Retana" />
+
+
+<meta name="date" content="2022-08-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="análisis-preliminar.html"/>
+<link rel="next" href="visualización-de-datos.html"/>
+<script src="libs/header-attrs-2.11.3/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/toc.css" type="text/css" />
+<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="css/cajas.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Workshop Tidyverse</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#workshop-introducción-a-tidyverse" id="toc-workshop-introducción-a-tidyverse"><span class="toc-section-number">1</span> Workshop: Introducción a tidyverse</a>
+<ul>
+<li><a href="index.html#primeros-pasos" id="toc-primeros-pasos"><span class="toc-section-number">1.1</span> Primeros pasos</a></li>
+<li><a href="index.html#porqué-tidyverse" id="toc-porqué-tidyverse"><span class="toc-section-number">1.2</span> ¿Porqué Tidyverse?</a></li>
+<li><a href="index.html#recursos-adicionales" id="toc-recursos-adicionales"><span class="toc-section-number">1.3</span> Recursos adicionales</a></li>
+</ul></li>
+<li><a href="análisis-preliminar.html#análisis-preliminar" id="toc-análisis-preliminar"><span class="toc-section-number">2</span> Análisis preliminar</a>
+<ul>
+<li><a href="análisis-preliminar.html#data-import" id="toc-data-import"><span class="toc-section-number">2.1</span> Data import</a></li>
+<li><a href="análisis-preliminar.html#data-tidying" id="toc-data-tidying"><span class="toc-section-number">2.2</span> Data tidying</a></li>
+</ul></li>
+<li><a href="manipulación-de-datos.html#manipulación-de-datos" id="toc-manipulación-de-datos"><span class="toc-section-number">3</span> Manipulación de datos</a>
+<ul>
+<li><a href="manipulación-de-datos.html#modificar-data" id="toc-modificar-data"><span class="toc-section-number">3.1</span> Modificar data</a></li>
+<li><a href="manipulación-de-datos.html#combinar-data" id="toc-combinar-data"><span class="toc-section-number">3.2</span> Combinar data</a></li>
+</ul></li>
+<li><a href="visualización-de-datos.html#visualización-de-datos" id="toc-visualización-de-datos"><span class="toc-section-number">4</span> Visualización de datos</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Workshop: Tidyverse</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="manipulación-de-datos" class="section level1" number="3">
+<h1><span class="header-section-number">Sección 3</span> Manipulación de datos</h1>
+<p>Continuando con el análisis las siguientes operaciones que debemos hacer es la consolidación y transformación de nuestros datos.</p>
+<ul>
+<li><p><a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Data Wrangling</a></p></li>
+<li><p><a href="https://nyu-cdsc.github.io/learningr/assets/data-transformation.pdf">Data transformation</a></p></li>
+</ul>
+<div id="modificar-data" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Modificar data</h2>
+<p>Aquí vamos a ver algunas de las funciones más utilizadas en el análisis de datos.</p>
+<ul>
+<li><strong>filter</strong>: sirve para obtener un subconjunto de tus las filas de acuerdo a las condiciones que determines.</li>
+<li><strong>select</strong>: escoge las columnas de acuerdo con el nombre que selecciones.</li>
+<li><strong>arrange</strong>: reordena de acuerdo con algún criterio (ejemplo:nombre, valor, etc).</li>
+<li><strong>mutate</strong>: sirve para crear nuevas variables (ya lo utilizamos en la sección análisis preliminar).</li>
+<li><strong>summarise</strong>: reduce las variables a un “resumen” de acuerdo con ciertos criterios.</li>
+<li><strong>spread</strong> o <strong>pivot_wider</strong>: sirve para cambiar la forma del dataframe que se está usando de largo a ancho.</li>
+<li><strong>gather</strong> o <strong>pivot_longer</strong>: sirve para cambiar la forma del dataframe utilizado de archo a largo.</li>
+</ul>
+<p>Todas estas funciones tienen una forma de operar similar, el primer argumento que reciben es un data.frame. Los argumentos que siguen muestran las operaciones a realizar y entregan un data.frame nuevo con estas operaciones ejecutadas.</p>
+<p>El script source.R en la carpeta data tiene los commandos para importar los datos y las transformaciones básicas que hicimos para que puedan correr el código directo en un script, sin necesidad de hacerlo en el notebook.</p>
+<p>En primer lugar queremos seleccionar únicamente las variables que vamos a necesitar y no estar cargando con variables, para esto usamos <code>select</code>. Suponiendo que nos interesa el análisis por sexo y no queremos datos que no tengan asignados un sexo podemos usar <code>filter</code> para filtrar los valores distintos a NA.</p>
+<p>Además, vamos a utilizar el commando <code>mutate</code> para transformar la variable sex a que nos indique si es mujer u hombre, en lugar de 1 y 2. Lo mismo para education_level, en dónde queremos que nos tome los valores como categóricos y no como numéricos.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="manipulación-de-datos.html#cb1-1" aria-hidden="true" tabindex="-1"></a>bol_18_tidy <span class="ot">&lt;-</span> data_rename_18 <span class="sc">%&gt;%</span> </span>
+<span id="cb1-2"><a href="manipulación-de-datos.html#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(education_level, sex, age, injured, attacked, attempt_suicide, felt_lonely, worried_sleep, weight) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-3"><a href="manipulación-de-datos.html#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-4"><a href="manipulación-de-datos.html#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">ifelse</span>(sex<span class="sc">==</span><span class="dv">1</span>, <span class="st">&quot;men&quot;</span>, </span>
+<span id="cb1-5"><a href="manipulación-de-datos.html#cb1-5" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">ifelse</span>(sex<span class="sc">==</span><span class="dv">2</span>, <span class="st">&quot;women&quot;</span>, sex)),</span>
+<span id="cb1-6"><a href="manipulación-de-datos.html#cb1-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">education_level =</span> <span class="fu">as.character</span>(education_level),</span>
+<span id="cb1-7"><a href="manipulación-de-datos.html#cb1-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">age =</span> <span class="fu">case_when</span>(age <span class="sc">==</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;11 or younger&quot;</span>, </span>
+<span id="cb1-8"><a href="manipulación-de-datos.html#cb1-8" aria-hidden="true" tabindex="-1"></a>                             age <span class="sc">==</span><span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;12 years old&quot;</span>,</span>
+<span id="cb1-9"><a href="manipulación-de-datos.html#cb1-9" aria-hidden="true" tabindex="-1"></a>                             age <span class="sc">==</span><span class="dv">3</span> <span class="sc">~</span> <span class="st">&quot;13 years old&quot;</span>, </span>
+<span id="cb1-10"><a href="manipulación-de-datos.html#cb1-10" aria-hidden="true" tabindex="-1"></a>                             age <span class="sc">==</span><span class="dv">4</span> <span class="sc">~</span> <span class="st">&quot;14 years old&quot;</span>, </span>
+<span id="cb1-11"><a href="manipulación-de-datos.html#cb1-11" aria-hidden="true" tabindex="-1"></a>                             age <span class="sc">==</span><span class="dv">5</span> <span class="sc">~</span> <span class="st">&quot;15 years old&quot;</span>, </span>
+<span id="cb1-12"><a href="manipulación-de-datos.html#cb1-12" aria-hidden="true" tabindex="-1"></a>                             age <span class="sc">==</span><span class="dv">6</span> <span class="sc">~</span> <span class="st">&quot;16 years old&quot;</span>, </span>
+<span id="cb1-13"><a href="manipulación-de-datos.html#cb1-13" aria-hidden="true" tabindex="-1"></a>                             age <span class="sc">==</span><span class="dv">7</span> <span class="sc">~</span> <span class="st">&quot;17 years old&quot;</span>, </span>
+<span id="cb1-14"><a href="manipulación-de-datos.html#cb1-14" aria-hidden="true" tabindex="-1"></a>                             age <span class="sc">==</span><span class="dv">8</span> <span class="sc">~</span> <span class="st">&quot;18 or older&quot;</span>, </span>
+<span id="cb1-15"><a href="manipulación-de-datos.html#cb1-15" aria-hidden="true" tabindex="-1"></a>                             <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span>)) </span></code></pre></div>
+<p>Ejercicio 1 (2 minutos): qué haríamos si quiero encontrar el conjunto de personas que fueran mujeres menores a 13 años?</p>
+<p>Muchas veces queremos crear indicadores o resúmenes de nuestros datos. Para esto es muy útil el paquete <code>dplyr</code> del <code>Tidyverse</code>.
+La función <code>group_by</code> nos ayuda a definir la desagregación con la que queremos trabajar y luego realiza las operaciones que definamos utilizando esos grupos. Después de esto utilizaremos la función summarise para resumir nuestros datos en los grupos que definimos.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="manipulación-de-datos.html#cb2-1" aria-hidden="true" tabindex="-1"></a>mental_health <span class="ot">&lt;-</span> bol_18_tidy <span class="sc">%&gt;%</span> </span>
+<span id="cb2-2"><a href="manipulación-de-datos.html#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-3"><a href="manipulación-de-datos.html#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">felt_lonely_pct =</span>  <span class="fu">sum</span>(weight[felt_lonely<span class="sc">&gt;</span><span class="dv">3</span>],<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-4"><a href="manipulación-de-datos.html#cb2-4" aria-hidden="true" tabindex="-1"></a>              <span class="sc">/</span><span class="fu">sum</span>(weight[<span class="sc">!</span><span class="fu">is.na</span>(felt_lonely)], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-5"><a href="manipulación-de-datos.html#cb2-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">felt_lonely_n =</span> <span class="fu">length</span>(<span class="fu">na.omit</span>(felt_lonely)),</span>
+<span id="cb2-6"><a href="manipulación-de-datos.html#cb2-6" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb2-7"><a href="manipulación-de-datos.html#cb2-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">worried_sleep_pct =</span> <span class="fu">sum</span>(weight[worried_sleep<span class="sc">&gt;</span><span class="dv">3</span>],<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-8"><a href="manipulación-de-datos.html#cb2-8" aria-hidden="true" tabindex="-1"></a>              <span class="sc">/</span><span class="fu">sum</span>(weight[<span class="sc">!</span><span class="fu">is.na</span>(worried_sleep)], <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb2-9"><a href="manipulación-de-datos.html#cb2-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">worried_sleep_n =</span> <span class="fu">length</span>(<span class="fu">na.omit</span>(worried_sleep)),</span>
+<span id="cb2-10"><a href="manipulación-de-datos.html#cb2-10" aria-hidden="true" tabindex="-1"></a>              </span>
+<span id="cb2-11"><a href="manipulación-de-datos.html#cb2-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">attempt_suicide_pct =</span> <span class="fu">sum</span>(weight[attempt_suicide<span class="sc">&gt;</span><span class="dv">1</span>],<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-12"><a href="manipulación-de-datos.html#cb2-12" aria-hidden="true" tabindex="-1"></a>              <span class="sc">/</span><span class="fu">sum</span>(weight[<span class="sc">!</span><span class="fu">is.na</span>(attempt_suicide)], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-13"><a href="manipulación-de-datos.html#cb2-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">attempt_suicide_n =</span> <span class="fu">length</span>(<span class="fu">na.omit</span>(attempt_suicide)))</span></code></pre></div>
+<p>En este caso porque las variables no son 1 o 0, o numéricos, sino distintos valores categóricos no podemos usar las funciones básicas de summarise, pero vamos a hacer un ejemplo para mostrar como se usa. Creamos una variable dummy con el valor de 1 si la persona se ha dormido preocupada siempre o casi siempre, asignamos 0 en otro caso y mantenemos los NA. El promedio debería de ser el mismo que en el caso anterior.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="manipulación-de-datos.html#cb3-1" aria-hidden="true" tabindex="-1"></a>mental_health_sum <span class="ot">&lt;-</span> bol_18_tidy <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="manipulación-de-datos.html#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">worried_sleep_dum =</span> <span class="fu">case_when</span>(worried_sleep <span class="sc">&gt;</span><span class="dv">3</span> <span class="sc">~</span><span class="dv">1</span>, </span>
+<span id="cb3-3"><a href="manipulación-de-datos.html#cb3-3" aria-hidden="true" tabindex="-1"></a>                                       worried_sleep <span class="sc">&lt;=</span><span class="dv">3</span> <span class="sc">~</span> <span class="dv">0</span>, </span>
+<span id="cb3-4"><a href="manipulación-de-datos.html#cb3-4" aria-hidden="true" tabindex="-1"></a>                                       <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_real_</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-5"><a href="manipulación-de-datos.html#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-6"><a href="manipulación-de-datos.html#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">worried_sleep_pct =</span> <span class="fu">mean</span>(worried_sleep_dum, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb3-7"><a href="manipulación-de-datos.html#cb3-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">worried_sleep_pct_w =</span> <span class="fu">weighted.mean</span>(worried_sleep_dum, weight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<p>Ejercicio 2 (5 minutos): Qué grupo de edad tiene un porcentaje más alto de jóvenes que se duermen siempre o casi siempre preocupados?.</p>
+<p>Observando los dataframes que hemos creado, podemos ver que este está a lo ancho. Para muchas de las operaciones en R y por cuestiones de limpieza, muchas veces es preferible tener el dataframe a lo largo. Sobre todo si este se va a utilizar para visualizarlo de alguna forma. Para esto las funciones que nos ayudan son <code>gather</code> y <code>pivot_longer</code>. Las dos funciones hacen básicamente lo mismo, pero la segunda es una versión más reciente que fue diseñada para facilitar y generalizar la función gather. Por lo que normalmente se prefiere.</p>
+<p>Los argumentos que le damos son el dataframe (se lo estamos pasando con el pipe); las columnas en las que queremos aplicar la función, en este caso nuestros 3 indicadores. Y definimos dos nuevas columnas, una donde queremos guardar los indicadores y otra donde queremos guardar los valores.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="manipulación-de-datos.html#cb4-1" aria-hidden="true" tabindex="-1"></a>mental_indicators <span class="ot">&lt;-</span> mental_health <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="manipulación-de-datos.html#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> felt_lonely_pct<span class="sc">:</span>attempt_suicide_n, <span class="at">names_to =</span> <span class="st">&#39;indicator&#39;</span>, <span class="at">values_to =</span> <span class="st">&#39;value&#39;</span>) </span></code></pre></div>
+<p>Aquí también podemos usar <code>pivot_wider</code> o <code>spread</code> ya que tenemos los valores y el tamaño de la muestra en la misma columna, y es más fácil ver los valores si los tomamos como dos columnas distintas una que contenga los valores y otra que contenga el tamaño de la muestra. Así que usando una función de manejo de texto vamos a extraer las últimas letras de la función para ver si es “n” o “pct”.</p>
+<p>Pueden encontrar aquí la cheatsheet de <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/strings.pdf">String manipulation</a></p>
+<p>Después a la función pivot_wider le damos como argumentos: el dataframe y las variables de dónde debe tomar el nuevo nombre y los valores.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="manipulación-de-datos.html#cb5-1" aria-hidden="true" tabindex="-1"></a>mental_indicators <span class="ot">&lt;-</span> mental_indicators <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="manipulación-de-datos.html#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type =</span> <span class="fu">sub</span>(<span class="st">&quot;.*_&quot;</span>, <span class="st">&quot;&quot;</span>, indicator),</span>
+<span id="cb5-3"><a href="manipulación-de-datos.html#cb5-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">indicator =</span> <span class="fu">case_when</span>(type <span class="sc">==</span> <span class="st">&quot;pct&quot;</span> <span class="sc">~</span> <span class="fu">str_sub</span>(indicator, <span class="dv">1</span>,<span class="sc">-</span>5L),</span>
+<span id="cb5-4"><a href="manipulación-de-datos.html#cb5-4" aria-hidden="true" tabindex="-1"></a>                            type <span class="sc">==</span> <span class="st">&quot;n&quot;</span> <span class="sc">~</span> <span class="fu">str_sub</span>(indicator, <span class="dv">1</span>,<span class="sc">-</span>3L))) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-5"><a href="manipulación-de-datos.html#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> type, <span class="at">values_from =</span> value)</span></code></pre></div>
+<p>Ejercicio 3 (6 minutos): usando <em>al menos dos</em> funciones de las que hemos aprendido genera la diferencia en los coeficientes de mujeres y hombres para estas 3 variables.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="manipulación-de-datos.html#cb6-1" aria-hidden="true" tabindex="-1"></a>mental_indicators_diff <span class="ot">&lt;-</span> mental_indicators <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="manipulación-de-datos.html#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="manipulación-de-datos.html#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> sex, <span class="at">values_from =</span> pct) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-4"><a href="manipulación-de-datos.html#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diff =</span> (men <span class="sc">-</span> women)<span class="sc">*</span><span class="dv">100</span>, </span>
+<span id="cb6-5"><a href="manipulación-de-datos.html#cb6-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">gap_pos =</span> women <span class="sc">+</span>(diff<span class="sc">/</span><span class="dv">200</span>))</span></code></pre></div>
+</div>
+<div id="combinar-data" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Combinar data</h2>
+<p>Otra serie de funciones que es muy utilizada en análisis de datos son las que nos ayudan a combinar datos, aquí veremos únicamente algunas de las más utilizadas.</p>
+<ul>
+<li><strong>join</strong>: sirve para combinar dataframes, puede ser left, right, inner y full.</li>
+<li><strong>rbind</strong>:</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="manipulación-de-datos.html#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Paul&quot;</span>, <span class="st">&quot;George&quot;</span>, <span class="st">&quot;Ringo&quot;</span>, <span class="st">&quot;Stuart&quot;</span>, <span class="st">&quot;Pete&quot;</span>),</span>
+<span id="cb7-2"><a href="manipulación-de-datos.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">instrument =</span> <span class="fu">c</span>(<span class="st">&quot;guitar&quot;</span>, <span class="st">&quot;bass&quot;</span>, <span class="st">&quot;guitar&quot;</span>, <span class="st">&quot;drums&quot;</span>, <span class="st">&quot;bass&quot;</span>,</span>
+<span id="cb7-3"><a href="manipulación-de-datos.html#cb7-3" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;drums&quot;</span>))</span>
+<span id="cb7-4"><a href="manipulación-de-datos.html#cb7-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Paul&quot;</span>, <span class="st">&quot;George&quot;</span>, <span class="st">&quot;Ringo&quot;</span>, <span class="st">&quot;Brian&quot;</span>),</span>
+<span id="cb7-5"><a href="manipulación-de-datos.html#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">band =</span> <span class="fu">c</span>(<span class="st">&quot;TRUE&quot;</span>, <span class="st">&quot;TRUE&quot;</span>, <span class="st">&quot;TRUE&quot;</span>,  <span class="st">&quot;TRUE&quot;</span>, <span class="st">&quot;FALSE&quot;</span>))</span>
+<span id="cb7-6"><a href="manipulación-de-datos.html#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="manipulación-de-datos.html#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(x, y)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;name&quot;</code></pre>
+<pre><code>## # A tibble: 4 x 3
+##   name   instrument band 
+##   &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;
+## 1 John   guitar     TRUE 
+## 2 Paul   bass       TRUE 
+## 3 George guitar     TRUE 
+## 4 Ringo  drums      TRUE</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="manipulación-de-datos.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(x, y)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;name&quot;</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##   name   instrument band 
+##   &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;
+## 1 John   guitar     TRUE 
+## 2 Paul   bass       TRUE 
+## 3 George guitar     TRUE 
+## 4 Ringo  drums      TRUE 
+## 5 Stuart bass       &lt;NA&gt; 
+## 6 Pete   drums      &lt;NA&gt;</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="manipulación-de-datos.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">semi_join</span>(x, y)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;name&quot;</code></pre>
+<pre><code>## # A tibble: 4 x 2
+##   name   instrument
+##   &lt;chr&gt;  &lt;chr&gt;     
+## 1 John   guitar    
+## 2 Paul   bass      
+## 3 George guitar    
+## 4 Ringo  drums</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="manipulación-de-datos.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anti_join</span>(x, y)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;name&quot;</code></pre>
+<pre><code>## # A tibble: 2 x 2
+##   name   instrument
+##   &lt;chr&gt;  &lt;chr&gt;     
+## 1 Stuart bass      
+## 2 Pete   drums</code></pre>
+<p>Resumamos lo que observamos arriba:</p>
+<div class="mi-tabla">
+<table>
+<thead>
+<tr class="header">
+<th>Tipo</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>inner</td>
+<td>Incluye las filas que aparecen tanto en x como en y</td>
+</tr>
+<tr class="even">
+<td>left</td>
+<td>Incluye todas las filas en x y las filas de y que coincidan</td>
+</tr>
+<tr class="odd">
+<td>semi</td>
+<td>Incluye las filas de x que coincidan con y</td>
+</tr>
+<tr class="even">
+<td>anti</td>
+<td>Incluye las filas de x que no coinciden con y</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Esto lo vamos a utilizar para nuestro ejercicio de visualización.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="análisis-preliminar.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visualización-de-datos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/master/02-manipulacion.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/master/02-manipulacion.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

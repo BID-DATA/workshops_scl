@@ -1,0 +1,197 @@
+# Manipulación de datos 
+
+Continuando con el análisis las siguientes operaciones que debemos hacer es la consolidación y transformación de nuestros datos.
+
+
+* [Data Wrangling](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+
+* [Data transformation](https://nyu-cdsc.github.io/learningr/assets/data-transformation.pdf)
+
+## Modificar data
+
+Aquí vamos a ver algunas de las funciones más utilizadas en el análisis de datos. 
+
+* **filter**: sirve para obtener un subconjunto de tus las filas de acuerdo a las condiciones que determines. 
+* **select**: escoge las columnas de acuerdo con el nombre que selecciones. 
+* **arrange**: reordena de acuerdo con algún criterio (ejemplo:nombre, valor, etc).
+* **mutate**: sirve para crear nuevas variables (ya lo utilizamos en la sección análisis preliminar).
+* **summarise**: reduce las variables a un "resumen" de acuerdo con ciertos criterios. 
+* **spread**  o **pivot_wider**: sirve para cambiar la forma del dataframe que se está usando de largo a ancho. 
+* **gather** o **pivot_longer**: sirve para cambiar la forma del dataframe utilizado de archo a largo. 
+
+Todas estas funciones tienen una forma de operar similar, el primer argumento que reciben es un data.frame. Los argumentos que siguen muestran las operaciones a realizar y entregan un data.frame nuevo con estas operaciones ejecutadas. 
+
+El script source.R en la carpeta data tiene los commandos para importar los datos y las transformaciones básicas que hicimos para que puedan correr el código directo en un script, sin necesidad de hacerlo en el notebook. 
+
+En primer lugar queremos seleccionar únicamente las variables que vamos a necesitar y no estar cargando con variables, para esto usamos `select`. Suponiendo que nos interesa el análisis por sexo y no queremos datos que no tengan asignados un sexo podemos usar `filter` para filtrar los valores distintos a NA. 
+
+Además, vamos a utilizar el commando `mutate` para transformar la variable sex a que nos indique si es mujer u hombre, en lugar de 1 y 2. Lo mismo para education_level, en dónde queremos que nos tome los valores como categóricos y no como numéricos.
+```{r, include=FALSE}
+source('data/source.R')
+
+```
+
+
+```{r, out.width = "700px", include = T, echo = T, warning = FALSE}
+
+bol_18_tidy <- data_rename_18 %>% 
+  select(education_level, sex, age, injured, attacked, attempt_suicide, felt_lonely, worried_sleep, weight) %>% 
+  filter(!is.na(sex)) %>%
+  mutate(sex = ifelse(sex==1, "men", 
+                      ifelse(sex==2, "women", sex)),
+         education_level = as.character(education_level),
+         age = case_when(age ==1 ~ "11 or younger", 
+                             age ==2 ~ "12 years old",
+                             age ==3 ~ "13 years old", 
+                             age ==4 ~ "14 years old", 
+                             age ==5 ~ "15 years old", 
+                             age ==6 ~ "16 years old", 
+                             age ==7 ~ "17 years old", 
+                             age ==8 ~ "18 or older", 
+                             TRUE ~ NA_character_)) 
+
+```
+
+Ejercicio 1 (2 minutos): qué haríamos si quiero encontrar el conjunto de personas que fueran mujeres menores a 13 años? 
+
+```{r, out.width = "700px", include = F, echo = F, warning = FALSE}
+
+bol_mujer_16 <- bol_18_tidy %>% 
+  filter(sex == "women" & (age == "11 or younger" | age == "12 years old")) 
+
+```
+
+Muchas veces queremos crear indicadores o resúmenes de nuestros datos. Para esto es muy útil el paquete `dplyr` del `Tidyverse`.
+La función `group_by` nos ayuda a definir la desagregación con la que queremos trabajar y luego realiza las operaciones que definamos utilizando esos grupos. Después de esto utilizaremos la función summarise para resumir nuestros datos en los grupos que definimos.
+
+```{r, out.width = "700px", include = T, echo = T, warning = FALSE}
+
+mental_health <- bol_18_tidy %>% 
+  group_by(sex) %>% 
+  summarise(felt_lonely_pct =  sum(weight[felt_lonely>3],na.rm = TRUE)
+              /sum(weight[!is.na(felt_lonely)], na.rm = TRUE),
+              felt_lonely_n = length(na.omit(felt_lonely)),
+            
+            worried_sleep_pct = sum(weight[worried_sleep>3],na.rm = TRUE)
+              /sum(weight[!is.na(worried_sleep)], na.rm = TRUE), 
+              worried_sleep_n = length(na.omit(worried_sleep)),
+              
+            attempt_suicide_pct = sum(weight[attempt_suicide>1],na.rm = TRUE)
+              /sum(weight[!is.na(attempt_suicide)], na.rm = TRUE),
+              attempt_suicide_n = length(na.omit(attempt_suicide)))
+
+```
+
+En este caso porque las variables no son 1 o 0, o numéricos, sino distintos valores categóricos no podemos usar las funciones básicas de summarise, pero vamos a hacer un ejemplo para mostrar como se usa. Creamos una variable dummy con el valor de 1 si la persona se ha dormido preocupada siempre o casi siempre, asignamos 0 en otro caso y mantenemos los NA. El promedio debería de ser el mismo que en el caso anterior.
+
+```{r, out.width = "700px", include = T, echo = T, warning = FALSE}
+
+mental_health_sum <- bol_18_tidy %>% 
+  mutate(worried_sleep_dum = case_when(worried_sleep >3 ~1, 
+                                       worried_sleep <=3 ~ 0, 
+                                       TRUE ~ NA_real_)) %>% 
+  group_by(sex) %>% 
+    summarise(worried_sleep_pct = mean(worried_sleep_dum, na.rm = TRUE), 
+           worried_sleep_pct_w = weighted.mean(worried_sleep_dum, weight, na.rm = TRUE))
+
+```
+
+
+Ejercicio 2 (5 minutos): Qué grupo de edad tiene un porcentaje más alto de jóvenes que se duermen siempre o casi siempre preocupados?. 
+
+```{r, out.width = "700px", include = F, echo = F, warning = FALSE}
+
+mental_health_age <- bol_18_tidy %>% 
+  group_by(sex, age) %>% 
+  summarise(felt_lonely_pct =  sum(weight[felt_lonely>3],na.rm = TRUE)
+              /sum(weight[!is.na(felt_lonely)], na.rm = TRUE),
+              felt_lonely_n = length(na.omit(felt_lonely)),
+            
+            worried_sleep_pct = sum(weight[worried_sleep>3],na.rm = TRUE)
+              /sum(weight[!is.na(worried_sleep)], na.rm = TRUE), 
+              worried_sleep_n = length(na.omit(worried_sleep)),
+              
+            attempt_suicide_pct = sum(weight[attempt_suicide>1],na.rm = TRUE)
+              /sum(weight[!is.na(attempt_suicide)], na.rm = TRUE),
+            attempt_suicide_n = length(na.omit(attempt_suicide))) %>% 
+  arrange(desc(worried_sleep_pct))
+
+```
+
+Observando los dataframes que hemos creado, podemos ver que este está a lo ancho. Para muchas de las operaciones en R y por cuestiones de limpieza, muchas veces es preferible tener el dataframe a lo largo. Sobre todo si este se va a utilizar para visualizarlo de alguna forma. Para esto las funciones que nos ayudan son `gather` y `pivot_longer`. Las dos funciones hacen básicamente lo mismo, pero la segunda es una versión más reciente que fue diseñada para facilitar y generalizar la función gather. Por lo que normalmente se prefiere. 
+
+Los argumentos que le damos son el dataframe (se lo estamos pasando con el pipe); las columnas en las que queremos aplicar la función, en este caso nuestros 3 indicadores. Y definimos dos nuevas columnas, una donde queremos guardar los indicadores y otra donde queremos guardar los valores.
+
+```{r}
+
+mental_indicators <- mental_health %>% 
+  pivot_longer(cols = felt_lonely_pct:attempt_suicide_n, names_to = 'indicator', values_to = 'value') 
+
+
+```
+
+Aquí también podemos usar `pivot_wider` o `spread` ya que tenemos los valores y el tamaño de la muestra en la misma columna, y es más fácil ver los valores si los tomamos como dos columnas distintas una que contenga los valores y otra que contenga el tamaño de la muestra. Así que usando una función de manejo de texto vamos a extraer las últimas letras de la función para ver si es "n" o "pct". 
+
+Pueden encontrar aquí la cheatsheet de [String manipulation](https://raw.githubusercontent.com/rstudio/cheatsheets/main/strings.pdf)
+
+Después a la función pivot_wider le damos como argumentos: el dataframe y las variables de dónde debe tomar el nuevo nombre y los valores.
+
+```{r}
+
+mental_indicators <- mental_indicators %>% 
+  mutate(type = sub(".*_", "", indicator),
+          indicator = case_when(type == "pct" ~ str_sub(indicator, 1,-5L),
+                            type == "n" ~ str_sub(indicator, 1,-3L))) %>% 
+    pivot_wider(names_from = type, values_from = value)
+
+```
+
+Ejercicio 3 (6 minutos): usando *al menos dos* funciones de las que hemos aprendido genera la diferencia en los coeficientes de mujeres y hombres para estas 3 variables. 
+
+```{r}
+
+mental_indicators_diff <- mental_indicators %>% 
+  select(-n) %>% 
+  pivot_wider(names_from = sex, values_from = pct) %>% 
+  mutate(diff = (men - women)*100, 
+         gap_pos = women +(diff/200))
+
+```
+
+```{r, echo=FALSE, include=FALSE}
+write.csv(mental_indicators_diff, "data/mental_indicators_diff.csv")
+```
+
+
+## Combinar data
+
+Otra serie de funciones que es muy utilizada en análisis de datos son las que nos ayudan a combinar datos, aquí veremos únicamente algunas de las más utilizadas. 
+
+* **join**: sirve para combinar dataframes, puede ser left, right, inner y full. 
+* **rbind**: 
+
+
+```{r}
+x <- tibble(name = c("John", "Paul", "George", "Ringo", "Stuart", "Pete"),
+  instrument = c("guitar", "bass", "guitar", "drums", "bass",
+     "drums"))
+y <- tibble(name = c("John", "Paul", "George", "Ringo", "Brian"),
+  band = c("TRUE", "TRUE", "TRUE",  "TRUE", "FALSE"))
+
+inner_join(x, y)
+left_join(x, y)
+semi_join(x, y)
+anti_join(x, y)
+```
+Resumamos lo que observamos arriba:
+
+<div class="mi-tabla">
+Tipo | Acción
+-----|-------
+inner|Incluye las filas que aparecen tanto en x como en y
+left |Incluye todas las filas en x y las filas de y que coincidan
+semi |Incluye las filas de x que coincidan con y
+anti |Incluye las filas de x que no coinciden con y
+</div>
+
+Esto lo vamos a utilizar para nuestro ejercicio de visualización. 
