@@ -1,0 +1,46 @@
+
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+*.pdf
+*-Ex.R
+*.rds
+.Rproj
+*.Rproj
+
+# Output files from R CMD build
+/*.tar.gz
+
+# Output files from R CMD check
+/*.Rcheck/
+
+# RStudio files
+.Rproj.user/
+
+# knitr and R markdown default cache directories
+*_cache/
+/cache/
+_book/
+data/*
+.Rhistory
+.rstudio/*
+_bookdown_files/
+libs/
+**/*.bib
+**/*.html
+_main_cache/
+_main_files/
+SV_mapping_cache/
+SV_mapping.Rmd
+
+*.md
+# Temporary files created by R markdown
+*.utf8.md
+*.knit.md
+
+# R Environment Variables
+.Renviron
+
+
+
