@@ -1,8 +1,7 @@
 book_filename: "Workshop tidyverse"
 output_dir: docs
 delete_merged_file: true
-edit: https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/master/%s
-view: https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/master/%s
+repo: https://github.com/BID-DATA/workshops_scl.git
 language:
   ui:
     chapter_name: "Sección "

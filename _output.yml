@@ -1,5 +1,5 @@
 bookdown::gitbook:
-  css: [css/style.css, css/toc.css, css/font-awesome.min.css, css/cajas.css]
+  css: style.css
   config:
     toc:
       before: |
