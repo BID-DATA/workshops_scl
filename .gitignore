@@ -24,7 +24,6 @@
 .Rhistory
 .rstudio/*
 _bookdown_files/
-libs/
 **/*.bib
 _main_cache/
 _main_files/
