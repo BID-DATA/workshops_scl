@@ -17,15 +17,16 @@ Aquí vamos a ver algunas de las funciones más utilizadas en el análisis de da
 * **mutate**: sirve para crear nuevas variables (ya lo utilizamos en la sección análisis preliminar).
 * **summarise**: reduce las variables a un "resumen" de acuerdo con ciertos criterios. 
 * **spread**  o **pivot_wider**: sirve para cambiar la forma del dataframe que se está usando de largo a ancho. 
-* **gather** o **pivot_longer**: sirve para cambiar la forma del dataframe utilizado de archo a largo. 
+* **gather** o **pivot_longer**: sirve para cambiar la forma del dataframe utilizado de ancho a largo. 
 
 Todas estas funciones tienen una forma de operar similar, el primer argumento que reciben es un data.frame. Los argumentos que siguen muestran las operaciones a realizar y entregan un data.frame nuevo con estas operaciones ejecutadas. 
 
-El script source.R en la carpeta data tiene los commandos para importar los datos y las transformaciones básicas que hicimos para que puedan correr el código directo en un script, sin necesidad de hacerlo en el notebook. 
+El script source.R en la carpeta data tiene los comandos para importar los datos y las transformaciones básicas que hicimos para que puedan correr el código directo en un script, sin necesidad de hacerlo en el notebook. 
 
 En primer lugar queremos seleccionar únicamente las variables que vamos a necesitar y no estar cargando con variables, para esto usamos `select`. Suponiendo que nos interesa el análisis por sexo y no queremos datos que no tengan asignados un sexo podemos usar `filter` para filtrar los valores distintos a NA. 
 
 Además, vamos a utilizar el commando `mutate` para transformar la variable sex a que nos indique si es mujer u hombre, en lugar de 1 y 2. Lo mismo para education_level, en dónde queremos que nos tome los valores como categóricos y no como numéricos.
+
 ```{r, include=FALSE}
 source('data/source.R')
 

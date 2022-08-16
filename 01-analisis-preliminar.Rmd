@@ -9,13 +9,12 @@ Las dos primeras fases de un análisis son la obtención y limpieza básica de n
 
 ## Data import
 
-
 Normalmente, al iniciar un proyecto lo primero que hacemos es cargar los datos y las librerías que vamos a utilizar. 
 
 Como regla general cargamos la librería `tidyverse` y la que utilizaremos para leer nuestras bases.
 Los archivos más comunes que utilizamos como fuentes de datos son .csv, o .xlsx. los .csv se leen con read.csv, y los .xlsx con la librería readxl.
 
-Como ejemplo para este ejercicio vamos a tomar la base de datos de [Global School-Based Student Health Survey](https://extranet.who.int/ncdsmicrodata/index.php/catalog/GSHS)
+Como ejemplo para este ejercicio vamos a tomar la base de datos de [Global School-Based Student Health Survey](https://extranet.who.int/ncdsmicrodata/index.php/catalog/GSHS) en la carpeta de datos
 
 ```{r, include=FALSE}
 source('data/source.R')
@@ -38,7 +37,7 @@ Esta base de datos está muy "limpia" pues viene de una encuesta que se hace de 
 En este caso va a ser rápido tener nuestros datos listos para trabajarlos, pero normalmente tomaría un poco de limpieza inicial. 
 
 Aquí lo único que vamos a hacer es tomar un diccionario de variables para renombrarlas y poder manipularlas más fácil y con menos posibilidad de error. 
-Siempre es bueno empezar haciendo una exploración de los datos, para eso podemos usar el comando glimpse().
+Siempre es bueno empezar haciendo una exploración de los datos, para eso podemos usar el comando glimpse() y algunas gráficas sencillas que nos muestren la dispersión de los datos.
 
 ```{r, out.width = "700px", include = T, echo = T, warning = FALSE}
 
@@ -48,12 +47,14 @@ glimpse(bol_12_raw)
 ```
 
 Vemos que nuestros datos tienen nombres limpios aunque poco amigables, por lo que vamos a renombrarlos usando un diccionario. 
-Aunque antes de hacerlo vamos a explicar uno de los commandos más útiles en R.
-A medida que los scripts se hacer más extensos es dificil empezar a seguir las operaciones que le hacemos a un dataframe. 
+Aunque antes de hacerlo vamos a explicar uno de los comandos más útiles en R.
+A medida que los scripts se hacer más extensos es difícil empezar a seguir las operaciones que le hacemos a un dataframe. 
 En R, por lo general vamos a utilizar un dataframe o objeto al que nombraremos con el commando `<-` y para entender lo que le estamos haciendo a ese dataframe vamos a utilizar el pipe ` %>% `
-El pipe se utiliza para dar "foco" a las acciones que se hacen a un objeto. 
+El pipe se utiliza para dar "foco" a las acciones que se hacen a un objeto. Esto hace que las operaciones realizadas a los objetos sean más fáciles de seguir y entender si estás leyendo un código de alguien más. 
  
 El shortcut en el teclado para el pipe es `Ctrl` `shift` `m`
+
+Para la claridad del código pueden utilizar esta [guía de estilo](https://style.tidyverse.org/index.html)
 
 ```{r, out.width = "700px", include = T, echo = T, warning = FALSE}
 
