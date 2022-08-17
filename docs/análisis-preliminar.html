@@ -24,7 +24,7 @@
 <meta name="author" content="María Reyes Retana" />
 
 
-<meta name="date" content="2022-08-08" />
+<meta name="date" content="2022-08-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -135,7 +135,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li><a href="./">Workshop Tidyverse</a></li>
-
 <li class="divider"></li>
 <li><a href="index.html#workshop-introducción-a-tidyverse" id="toc-workshop-introducción-a-tidyverse"><span class="toc-section-number">1</span> Workshop: Introducción a tidyverse</a>
 <ul>
@@ -183,9 +182,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-import" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Data import</h2>
 <p>Normalmente, al iniciar un proyecto lo primero que hacemos es cargar los datos y las librerías que vamos a utilizar.</p>
+<p>Para este taller vamos a utilizar el script ejercicio.R en la carpeta tidyverse de la main branch de este repositorio. Dentro de esa carpeta también tenemos, un proyecto y los datos que van a utilizar.</p>
 <p>Como regla general cargamos la librería <code>tidyverse</code> y la que utilizaremos para leer nuestras bases.
 Los archivos más comunes que utilizamos como fuentes de datos son .csv, o .xlsx. los .csv se leen con read.csv, y los .xlsx con la librería readxl.</p>
-<p>Como ejemplo para este ejercicio vamos a tomar la base de datos de <a href="https://extranet.who.int/ncdsmicrodata/index.php/catalog/GSHS">Global School-Based Student Health Survey</a></p>
+<p>Como ejemplo para este ejercicio vamos a tomar la base de datos de <a href="https://extranet.who.int/ncdsmicrodata/index.php/catalog/GSHS">Global School-Based Student Health Survey</a> en la carpeta de datos</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="análisis-preliminar.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="análisis-preliminar.html#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="análisis-preliminar.html#cb1-3" aria-hidden="true" tabindex="-1"></a>bol_12_raw <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/BOL2012_National.csv&quot;</span>)</span>
@@ -197,7 +197,7 @@ Los archivos más comunes que utilizamos como fuentes de datos son .csv, o .xlsx
 <p>Esta base de datos está muy “limpia” pues viene de una encuesta que se hace de forma recurrente en muchos países, pero esto no pasa siempre.
 En este caso va a ser rápido tener nuestros datos listos para trabajarlos, pero normalmente tomaría un poco de limpieza inicial.</p>
 <p>Aquí lo único que vamos a hacer es tomar un diccionario de variables para renombrarlas y poder manipularlas más fácil y con menos posibilidad de error.
-Siempre es bueno empezar haciendo una exploración de los datos, para eso podemos usar el comando glimpse().</p>
+Siempre es bueno empezar haciendo una exploración de los datos, para eso podemos usar el comando glimpse() y algunas gráficas sencillas que nos muestren la dispersión de los datos.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="análisis-preliminar.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(bol_12_raw)</span></code></pre></div>
 <pre><code>## Rows: 3,696
 ## Columns: 123
@@ -325,11 +325,12 @@ Siempre es bueno empezar haciendo una exploración de los datos, para eso podemo
 ## $ stratum  &lt;int&gt; 201201008, 201201008, 201201008, 201201008, 201201008, 201201~
 ## $ psu      &lt;int&gt; 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 1~</code></pre>
 <p>Vemos que nuestros datos tienen nombres limpios aunque poco amigables, por lo que vamos a renombrarlos usando un diccionario.
-Aunque antes de hacerlo vamos a explicar uno de los commandos más útiles en R.
-A medida que los scripts se hacer más extensos es dificil empezar a seguir las operaciones que le hacemos a un dataframe.
+Aunque antes de hacerlo vamos a explicar uno de los comandos más útiles en R.
+A medida que los scripts se hacer más extensos es difícil empezar a seguir las operaciones que le hacemos a un dataframe.
 En R, por lo general vamos a utilizar un dataframe o objeto al que nombraremos con el commando <code>&lt;-</code> y para entender lo que le estamos haciendo a ese dataframe vamos a utilizar el pipe <code>%&gt;%</code>
-El pipe se utiliza para dar “foco” a las acciones que se hacen a un objeto.</p>
+El pipe se utiliza para dar “foco” a las acciones que se hacen a un objeto. Esto hace que las operaciones realizadas a los objetos sean más fáciles de seguir y entender si estás leyendo un código de alguien más.</p>
 <p>El shortcut en el teclado para el pipe es <code>Ctrl</code> <code>shift</code> <code>m</code></p>
+<p>Para la claridad del código pueden utilizar esta <a href="https://style.tidyverse.org/index.html">guía de estilo</a></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="análisis-preliminar.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
 <span id="cb4-2"><a href="análisis-preliminar.html#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="análisis-preliminar.html#cb4-3" aria-hidden="true" tabindex="-1"></a>diccionario <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/diccionario_variables.csv&quot;</span>) <span class="sc">%&gt;%</span> </span>
@@ -456,8 +457,8 @@ El pipe se utiliza para dar “foco” a las acciones que se hacen a un objeto.<
 ## $ weight               &lt;dbl&gt; 287.2826, 287.2826, 232.6328, 232.6328, 168.1811,~
 ## $ stratum              &lt;int&gt; 201801011, 201801011, 201801011, 201801011, 20180~
 ## $ psu                  &lt;int&gt; 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 2~</code></pre>
-<p>Vemos como las funciones ya tienen nombres más claros (únicamente para algunas variables ya que son las que vamos a necesitar), y podemos seguir con la transformación de nuestros datos.
-Aquí hay otras funciones que nos podrían ayudar si quisieramos quitar los NAs o hacer otro tipo de transformaciones, pero en este caos vamos a utilizar todos los datos.</p>
+<p>Vemos como las variables ya tienen nombres más claros (únicamente para algunas variables ya que son las que vamos a necesitar), y podemos seguir con la transformación de nuestros datos.
+Aquí hay otras funciones que nos podrían ayudar si quisiéramos quitar los NAs o hacer otro tipo de transformaciones, pero en este caso vamos a utilizar todos los datos.</p>
 
 </div>
 </div>
@@ -509,7 +510,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["Workshop tidyverse.pdf", "Workshop tidyverse.epub"],
 "search": {
 "engine": "fuse",
 "options": null

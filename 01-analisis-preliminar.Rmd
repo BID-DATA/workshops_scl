@@ -11,10 +11,13 @@ Las dos primeras fases de un análisis son la obtención y limpieza básica de n
 
 Normalmente, al iniciar un proyecto lo primero que hacemos es cargar los datos y las librerías que vamos a utilizar. 
 
+Para este taller vamos a utilizar el script ejercicio.R en la carpeta tidyverse de la main branch de este repositorio. Dentro de esa carpeta también tenemos, un proyecto y los datos que van a utilizar. 
+
 Como regla general cargamos la librería `tidyverse` y la que utilizaremos para leer nuestras bases.
 Los archivos más comunes que utilizamos como fuentes de datos son .csv, o .xlsx. los .csv se leen con read.csv, y los .xlsx con la librería readxl.
 
 Como ejemplo para este ejercicio vamos a tomar la base de datos de [Global School-Based Student Health Survey](https://extranet.who.int/ncdsmicrodata/index.php/catalog/GSHS) en la carpeta de datos
+
 
 ```{r, include=FALSE}
 source('data/source.R')
@@ -56,6 +59,7 @@ El shortcut en el teclado para el pipe es `Ctrl` `shift` `m`
 
 Para la claridad del código pueden utilizar esta [guía de estilo](https://style.tidyverse.org/index.html)
 
+
 ```{r, out.width = "700px", include = T, echo = T, warning = FALSE}
 
 library(data.table)
@@ -71,5 +75,6 @@ glimpse(data_rename_18)
 
 ```
 
-Vemos como las funciones ya tienen nombres más claros (únicamente para algunas variables ya que son las que vamos a necesitar), y podemos seguir con la transformación de nuestros datos.
-Aquí hay otras funciones que nos podrían ayudar si quisieramos quitar los NAs o hacer otro tipo de transformaciones, pero en este caos vamos a utilizar todos los datos.
+Vemos como las variables ya tienen nombres más claros (únicamente para algunas variables ya que son las que vamos a necesitar), y podemos seguir con la transformación de nuestros datos.
+Aquí hay otras funciones que nos podrían ayudar si quisiéramos quitar los NAs o hacer otro tipo de transformaciones, pero en este caso vamos a utilizar todos los datos.
+

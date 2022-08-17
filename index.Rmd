@@ -19,16 +19,16 @@ El contenido del taller será el siguiente:
   - Cargar paquetes
   - Importar data 
   - Exploración básica
- 
-- **2. Reshape your data**
-  - Pivot_longer, pivot_wider
-  - Append, left_join
- 
-- **3. Limpieza y modificación**
+  
+- **2. Limpieza y modificación**
   - Filter, select
   - Mutate
   - Group_by, summarize
  
+- **3. Reshape your data**
+  - Pivot_longer, pivot_wider
+  - Append, left_join
+
 - **4. Visualization with tidy data/ ggplot**
 
 Para la elaboración de este curso utilice estos cursos de github: 
@@ -53,18 +53,20 @@ Desde RStudio podemos intalar estos *paquetes* `install.packages("nombre_paquete
 
 En particular, Tidyverse es un conjunto de paquetes que fue creado para la manipulación, exploración y visualización de datos. Estos paquetes comparten un diseño común y tienen el objetivo de hacer más fácil el flujo de trabajo en el análisis de datos. La siguiente imagen muestra qué paquetes del Tidyverse se utilizan en las distintas etapas del análisis de datos.
 
+
 ```{r, out.width = "700px", include=T, echo=F}
 
 knitr::include_graphics("img/tidyverse.jpg")
 
 ```
 
+
 Pueden leer aquí el artículo completo de [What is the tidyverse?](https://rviews.rstudio.com/2017/06/08/what-is-the-tidyverse/)
  
  
 ## Recursos adicionales
 
-Hay múltiples recursos para aprender R de forma gratuira, aquí les dejo unos de los que me han ayudado.
+Hay múltiples recursos para aprender R de forma gratuita, aquí les dejo unos de los que me han ayudado.
 
 - [Cheatsheets](https://www.rstudio.com/resources/cheatsheets/)
 - [Data-to-viz.com](https://www.data-to-viz.com)

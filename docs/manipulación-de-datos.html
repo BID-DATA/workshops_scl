@@ -24,7 +24,7 @@
 <meta name="author" content="María Reyes Retana" />
 
 
-<meta name="date" content="2022-08-08" />
+<meta name="date" content="2022-08-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -135,7 +135,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li><a href="./">Workshop Tidyverse</a></li>
-
 <li class="divider"></li>
 <li><a href="index.html#workshop-introducción-a-tidyverse" id="toc-workshop-introducción-a-tidyverse"><span class="toc-section-number">1</span> Workshop: Introducción a tidyverse</a>
 <ul>
@@ -190,12 +189,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>mutate</strong>: sirve para crear nuevas variables (ya lo utilizamos en la sección análisis preliminar).</li>
 <li><strong>summarise</strong>: reduce las variables a un “resumen” de acuerdo con ciertos criterios.</li>
 <li><strong>spread</strong> o <strong>pivot_wider</strong>: sirve para cambiar la forma del dataframe que se está usando de largo a ancho.</li>
-<li><strong>gather</strong> o <strong>pivot_longer</strong>: sirve para cambiar la forma del dataframe utilizado de archo a largo.</li>
+<li><strong>gather</strong> o <strong>pivot_longer</strong>: sirve para cambiar la forma del dataframe utilizado de ancho a largo.</li>
 </ul>
 <p>Todas estas funciones tienen una forma de operar similar, el primer argumento que reciben es un data.frame. Los argumentos que siguen muestran las operaciones a realizar y entregan un data.frame nuevo con estas operaciones ejecutadas.</p>
-<p>El script source.R en la carpeta data tiene los commandos para importar los datos y las transformaciones básicas que hicimos para que puedan correr el código directo en un script, sin necesidad de hacerlo en el notebook.</p>
-<p>En primer lugar queremos seleccionar únicamente las variables que vamos a necesitar y no estar cargando con variables, para esto usamos <code>select</code>. Suponiendo que nos interesa el análisis por sexo y no queremos datos que no tengan asignados un sexo podemos usar <code>filter</code> para filtrar los valores distintos a NA.</p>
-<p>Además, vamos a utilizar el commando <code>mutate</code> para transformar la variable sex a que nos indique si es mujer u hombre, en lugar de 1 y 2. Lo mismo para education_level, en dónde queremos que nos tome los valores como categóricos y no como numéricos.</p>
+<p>En primer lugar queremos seleccionar únicamente las variables que vamos a necesitar y no estar cargando con variables, para esto usamos <code>select</code>. Suponiendo que nos interesa el análisis por sexo y no queremos datos que no tengan asignados un sexo podríamos usar <code>filter</code> para filtrar los valores para un sexo, o también elegir los valores distintos a NA.</p>
+<p>Además, vamos a utilizar el comando <code>mutate</code> para transformar la variable sexo para que nos indique si es mujer u hombre, en lugar de 1 y 2. Lo mismo para education_level, en dónde queremos que nos tome los valores como categóricos y no como numéricos.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="manipulación-de-datos.html#cb1-1" aria-hidden="true" tabindex="-1"></a>bol_18_tidy <span class="ot">&lt;-</span> data_rename_18 <span class="sc">%&gt;%</span> </span>
 <span id="cb1-2"><a href="manipulación-de-datos.html#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(education_level, sex, age, injured, attacked, attempt_suicide, felt_lonely, worried_sleep, weight) <span class="sc">%&gt;%</span> </span>
 <span id="cb1-3"><a href="manipulación-de-datos.html#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">%&gt;%</span></span>
@@ -241,7 +239,7 @@ La función <code>group_by</code> nos ayuda a definir la desagregación con la q
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="manipulación-de-datos.html#cb4-1" aria-hidden="true" tabindex="-1"></a>mental_indicators <span class="ot">&lt;-</span> mental_health <span class="sc">%&gt;%</span> </span>
 <span id="cb4-2"><a href="manipulación-de-datos.html#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> felt_lonely_pct<span class="sc">:</span>attempt_suicide_n, <span class="at">names_to =</span> <span class="st">&#39;indicator&#39;</span>, <span class="at">values_to =</span> <span class="st">&#39;value&#39;</span>) </span></code></pre></div>
 <p>Aquí también podemos usar <code>pivot_wider</code> o <code>spread</code> ya que tenemos los valores y el tamaño de la muestra en la misma columna, y es más fácil ver los valores si los tomamos como dos columnas distintas una que contenga los valores y otra que contenga el tamaño de la muestra. Así que usando una función de manejo de texto vamos a extraer las últimas letras de la función para ver si es “n” o “pct”.</p>
-<p>Pueden encontrar aquí la cheatsheet de <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/strings.pdf">String manipulation</a></p>
+<p>Para este tipo de modificaciones pueden encontrar aquí la cheatsheet de <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/strings.pdf">String manipulation</a></p>
 <p>Después a la función pivot_wider le damos como argumentos: el dataframe y las variables de dónde debe tomar el nuevo nombre y los valores.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="manipulación-de-datos.html#cb5-1" aria-hidden="true" tabindex="-1"></a>mental_indicators <span class="ot">&lt;-</span> mental_indicators <span class="sc">%&gt;%</span> </span>
 <span id="cb5-2"><a href="manipulación-de-datos.html#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type =</span> <span class="fu">sub</span>(<span class="st">&quot;.*_&quot;</span>, <span class="st">&quot;&quot;</span>, indicator),</span>
@@ -304,7 +302,7 @@ La función <code>group_by</code> nos ayuda a definir la desagregación con la q
 ##   &lt;chr&gt;  &lt;chr&gt;     
 ## 1 Stuart bass      
 ## 2 Pete   drums</code></pre>
-<p>Resumamos lo que observamos arriba:</p>
+<p>Resumiendo lo que observamos arriba:</p>
 <div class="mi-tabla">
 <table>
 <thead>
@@ -333,7 +331,7 @@ La función <code>group_by</code> nos ayuda a definir la desagregación con la q
 </tbody>
 </table>
 </div>
-<p>Esto lo vamos a utilizar para nuestro ejercicio de visualización.</p>
+<p>Vamos a utilizar esto en nuestro ejercicio de visualización.</p>
 
 </div>
 </div>
@@ -385,7 +383,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["Workshop tidyverse.pdf", "Workshop tidyverse.epub"],
 "search": {
 "engine": "fuse",
 "options": null

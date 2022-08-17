@@ -24,7 +24,7 @@
 <meta name="author" content="María Reyes Retana" />
 
 
-<meta name="date" content="2022-08-08" />
+<meta name="date" content="2022-08-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -135,7 +135,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li><a href="./">Workshop Tidyverse</a></li>
-
 <li class="divider"></li>
 <li><a href="index.html#workshop-introducción-a-tidyverse" id="toc-workshop-introducción-a-tidyverse"><span class="toc-section-number">1</span> Workshop: Introducción a tidyverse</a>
 <ul>
@@ -181,6 +180,7 @@ Esta libraría se llama <code>ggplot2</code> que ya se cargó como parte de nues
 <p>Aquí les dejo la cheatsheet y una página súper útil de distintos gráficos.</p>
 <ul>
 <li><a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf">Data visualizacion</a></li>
+<li><a href="https://r-graph-gallery.com/">R graph gallery</a></li>
 </ul>
 <p>Para esta serie de ejercicios vamos a cargar nuestro paquete de indicadores y aprovecharlo para graficar series. Esto se hace con <code>library(idbsocialdataR)</code> si ya lo tienes instalado.
 Si no lo tienes instalado puedes correr <code>devtools::install_github("EL-BID/idbsocialdataR", force = TRUE)</code> aunque esto tomará un minuto aproximadamente.</p>
@@ -196,7 +196,7 @@ Si no lo tienes instalado puedes correr <code>devtools::install_github("EL-BID/i
 <span id="cb3-4"><a href="visualización-de-datos.html#cb3-4" aria-hidden="true" tabindex="-1"></a>         <span class="fu">slice</span>(<span class="fu">which.max</span>(year))) <span class="sc">+</span></span>
 <span id="cb3-5"><a href="visualización-de-datos.html#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> isoalpha3, <span class="at">y =</span> value, <span class="at">color =</span> sex)) <span class="sc">+</span></span>
 <span id="cb3-6"><a href="visualización-de-datos.html#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>))</span></code></pre></div>
-<p><img src="Workshop-tidyverse_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="03-visualizacion_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>El mapeo de las propiedades estéticas depende del tipo de variable. Las variables discretas (sexo, región,
 país).</p>
 <table>
@@ -257,16 +257,16 @@ país).</p>
 <span id="cb4-19"><a href="visualización-de-datos.html#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
 <span id="cb4-20"><a href="visualización-de-datos.html#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb4-21"><a href="visualización-de-datos.html#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(tasa_ocupacion, ipv, <span class="at">label =</span> isoalpha3))</span></code></pre></div>
-<p><img src="Workshop-tidyverse_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="03-visualizacion_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>En este caso la relación no parece muy consistente con lo que nos diría la teoria, pero también es útil para ver que parece no haber una relación en este caso.</p>
-<p>La librería ggplot también es útil para analizar tendencias en distintos indicadores. Hagamos un ejemplo con como ha evolucionado la tasa de ocupacion en la región.</p>
+<p>La librería ggplot también es útil para analizar tendencias en distintos indicadores. Hagamos un ejemplo con como ha evolucionado la tasa de ocupación en la región.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="visualización-de-datos.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tasa_ocupacion <span class="sc">%&gt;%</span> </span>
 <span id="cb5-2"><a href="visualización-de-datos.html#cb5-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">filter</span>(ethnicity <span class="sc">==</span> <span class="st">&quot;Total&quot;</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb5-3"><a href="visualización-de-datos.html#cb5-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">group_by</span>(sex, year) <span class="sc">%&gt;%</span> </span>
 <span id="cb5-4"><a href="visualización-de-datos.html#cb5-4" aria-hidden="true" tabindex="-1"></a>         <span class="fu">summarise</span>(<span class="at">value_lac =</span> <span class="fu">mean</span>(value))) <span class="sc">+</span></span>
 <span id="cb5-5"><a href="visualización-de-datos.html#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value_lac, <span class="at">color =</span> sex)) <span class="sc">+</span></span>
 <span id="cb5-6"><a href="visualización-de-datos.html#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Workshop-tidyverse_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="03-visualizacion_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Podemos tratar de identificar patrones por grupos de población y para esto puede ser útil utilizar paneles, que se puede añadir como una capa a la gráfica con <code>facet_grid()</code> o <code>facet_warp()</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="visualización-de-datos.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tasa_ocupacion <span class="sc">%&gt;%</span> </span>
 <span id="cb6-2"><a href="visualización-de-datos.html#cb6-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">group_by</span>(sex, year, ethnicity) <span class="sc">%&gt;%</span> </span>
@@ -275,7 +275,7 @@ país).</p>
 <span id="cb6-5"><a href="visualización-de-datos.html#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value_lac, <span class="at">color =</span> sex)) <span class="sc">+</span></span>
 <span id="cb6-6"><a href="visualización-de-datos.html#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb6-7"><a href="visualización-de-datos.html#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>ethnicity) </span></code></pre></div>
-<p><img src="Workshop-tidyverse_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="03-visualizacion_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>También se puede hacer más bonita la gráfica arreglando los colores, tipo de letra y distintos aes(). Por ejemplo utilicemos la base resultante del ejercicio 3</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="visualización-de-datos.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(extrafont)</span>
 <span id="cb7-2"><a href="visualización-de-datos.html#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -304,13 +304,13 @@ país).</p>
 <span id="cb7-25"><a href="visualización-de-datos.html#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> colors_sex) <span class="sc">+</span></span>
 <span id="cb7-26"><a href="visualización-de-datos.html#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb7-27"><a href="visualización-de-datos.html#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
-<p><img src="Workshop-tidyverse_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="03-visualizacion_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Ejercicio final (10 minutos): usando lo que aprendimos calcula y grafica cual fue el país que tuvo una caída más grande en la tasa de participación femenina de 2019 a 2020. También determina si esto cambia por etnicidad.</p>
 <ul>
 <li><p>Tip 1: Toma en cuenta que la última encuesta de CHL y México antes de 2020 fue 2017 y 2018, respectivamente.</p></li>
 <li><p>Tip 2: la función lag() encuentra el valor inmediato anterior (no es la única forma de hacerlo).</p></li>
 </ul>
-<p><img src="Workshop-tidyverse_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="03-visualizacion_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 
 </div>
             </section>
@@ -361,7 +361,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["Workshop tidyverse.pdf", "Workshop tidyverse.epub"],
 "search": {
 "engine": "fuse",
 "options": null

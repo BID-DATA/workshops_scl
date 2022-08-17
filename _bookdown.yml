@@ -7,4 +7,3 @@ delete_merged_file: true
 repo: https://github.com/BID-DATA/workshops_scl.git
 language:
   ui:
-

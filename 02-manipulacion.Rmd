@@ -1,7 +1,7 @@
+
 # Manipulación de datos 
 
 Continuando con el análisis las siguientes operaciones que debemos hacer es la consolidación y transformación de nuestros datos.
-
 
 * [Data Wrangling](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
 
@@ -21,11 +21,9 @@ Aquí vamos a ver algunas de las funciones más utilizadas en el análisis de da
 
 Todas estas funciones tienen una forma de operar similar, el primer argumento que reciben es un data.frame. Los argumentos que siguen muestran las operaciones a realizar y entregan un data.frame nuevo con estas operaciones ejecutadas. 
 
-El script source.R en la carpeta data tiene los comandos para importar los datos y las transformaciones básicas que hicimos para que puedan correr el código directo en un script, sin necesidad de hacerlo en el notebook. 
+En primer lugar queremos seleccionar únicamente las variables que vamos a necesitar y no estar cargando con variables, para esto usamos `select`. Suponiendo que nos interesa el análisis por sexo y no queremos datos que no tengan asignados un sexo podríamos usar `filter` para filtrar los valores para un sexo, o también elegir los valores distintos a NA. 
 
-En primer lugar queremos seleccionar únicamente las variables que vamos a necesitar y no estar cargando con variables, para esto usamos `select`. Suponiendo que nos interesa el análisis por sexo y no queremos datos que no tengan asignados un sexo podemos usar `filter` para filtrar los valores distintos a NA. 
-
-Además, vamos a utilizar el commando `mutate` para transformar la variable sex a que nos indique si es mujer u hombre, en lugar de 1 y 2. Lo mismo para education_level, en dónde queremos que nos tome los valores como categóricos y no como numéricos.
+Además, vamos a utilizar el comando `mutate` para transformar la variable sexo para que nos indique si es mujer u hombre, en lugar de 1 y 2. Lo mismo para education_level, en dónde queremos que nos tome los valores como categóricos y no como numéricos.
 
 ```{r, include=FALSE}
 source('data/source.R')
@@ -133,7 +131,7 @@ mental_indicators <- mental_health %>%
 
 Aquí también podemos usar `pivot_wider` o `spread` ya que tenemos los valores y el tamaño de la muestra en la misma columna, y es más fácil ver los valores si los tomamos como dos columnas distintas una que contenga los valores y otra que contenga el tamaño de la muestra. Así que usando una función de manejo de texto vamos a extraer las últimas letras de la función para ver si es "n" o "pct". 
 
-Pueden encontrar aquí la cheatsheet de [String manipulation](https://raw.githubusercontent.com/rstudio/cheatsheets/main/strings.pdf)
+Para este tipo de modificaciones pueden encontrar aquí la cheatsheet de [String manipulation](https://raw.githubusercontent.com/rstudio/cheatsheets/main/strings.pdf)
 
 Después a la función pivot_wider le damos como argumentos: el dataframe y las variables de dónde debe tomar el nuevo nombre y los valores.
 
@@ -184,7 +182,7 @@ left_join(x, y)
 semi_join(x, y)
 anti_join(x, y)
 ```
-Resumamos lo que observamos arriba:
+Resumiendo lo que observamos arriba:
 
 <div class="mi-tabla">
 Tipo | Acción
@@ -195,4 +193,4 @@ semi |Incluye las filas de x que coincidan con y
 anti |Incluye las filas de x que no coinciden con y
 </div>
 
-Esto lo vamos a utilizar para nuestro ejercicio de visualización. 
+Vamos a utilizar esto en nuestro ejercicio de visualización.

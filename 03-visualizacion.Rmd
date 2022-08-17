@@ -7,6 +7,7 @@ Esta libraría se llama `ggplot2` que ya se cargó como parte de nuestros paquet
 Aquí les dejo la cheatsheet y una página súper útil de distintos gráficos.
 
 * [Data visualizacion](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
+* [R graph gallery](https://r-graph-gallery.com/)
 
 Para esta serie de ejercicios vamos a cargar nuestro paquete de indicadores y aprovecharlo para graficar series. Esto se hace con `library(idbsocialdataR)` si ya lo tienes instalado. 
 Si no lo tienes instalado puedes correr `devtools::install_github("EL-BID/idbsocialdataR", force = TRUE)` aunque esto tomará un minuto aproximadamente.
@@ -97,7 +98,7 @@ ggplot(base_part, aes(tasa_ocupacion, ipv)) +
 
 En este caso la relación no parece muy consistente con lo que nos diría la teoria, pero también es útil para ver que parece no haber una relación en este caso.
 
-La librería ggplot también es útil para analizar tendencias en distintos indicadores. Hagamos un ejemplo con como ha evolucionado la tasa de ocupacion en la región. 
+La librería ggplot también es útil para analizar tendencias en distintos indicadores. Hagamos un ejemplo con como ha evolucionado la tasa de ocupación en la región. 
 
 
 ```{r, message=FALSE, warning=FALSE, include=TRUE}
